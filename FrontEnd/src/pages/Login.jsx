@@ -45,7 +45,7 @@ const Login = () => {
                     }, 3000);
                 } else {
                     setTimeout(() => {
-                        navigate('/user')
+                        navigate('/UserDashboard')
                     }, 3000);
                 }
 

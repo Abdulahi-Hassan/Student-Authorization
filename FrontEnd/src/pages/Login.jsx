@@ -1,9 +1,10 @@
 import { useRef, useState } from "react"
-import { endpoint } from "../main"
+
 import axios from "axios"
+export const endpoint='http://localhost:3000/api'
+
 import toast, { Toaster } from 'react-hot-toast'
 import { Link, useNavigate } from "react-router-dom"
-
 const Login = () => {
     const [login, setlogin] = useState({
         Email: '',
@@ -13,10 +14,16 @@ const Login = () => {
     let PassRef = useRef()
 
     let navigate = useNavigate()
+
     const HandleLogin = async (e) => {
+
         
         try {
             e.preventDefault()
+
+
+          
+
             if(PassRef.current.value===""){
                 PassRef.current.focus()
             }
@@ -24,9 +31,9 @@ const Login = () => {
                 EmailRef.current.focus()
             }
             
-            let { data } = await axios.post(endpoint + 'login', login)
-           
+            let { data } = await axios.post(endpoint + '/login', login)
 
+           
             if (data.status === "Success") {
                
                 localStorage.setItem('user', JSON.stringify(data.UserExist))
@@ -38,7 +45,7 @@ const Login = () => {
                     }, 3000);
                 } else {
                     setTimeout(() => {
-                        navigate('/UserDashboard')
+                        navigate('/user')
                     }, 3000);
                 }
 

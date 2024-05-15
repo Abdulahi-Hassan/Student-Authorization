@@ -11,6 +11,19 @@ import { Header } from "./header";
 import { AdminDashboard } from "./Dashboard/AdminDashboard";
 import { UserDashboard } from "./Dashboard/UserDashboard";
 import Login, { SingUp ,Change} from "./pages/Login";
+import { UserDelete } from "./Components/AllUser/UserDelete";
+import { Receipt } from "./Components/AllReceipt/Receipt";
+import { ReceiptCreate } from "./Components/AllReceipt/ReceiptCreate";
+import { ReceiptDelete } from "./Components/AllReceipt/ReceiptDelete";
+import { ReceiptUpdate } from "./Components/AllReceipt/ReceiptUpdate";
+import { Class } from "./Components/AllClass/Class";
+import { ClassCreate } from "./Components/AllClass/ClassCreate";
+import { ClassUpdate } from "./Components/AllClass/ClassUpdate";
+import { ClassDelete } from "./Components/AllClass/ClassDelete";
+import { Student } from "./Components/AllStudent/Student";
+import { StudentCreate } from "./Components/AllStudent/StudentCreate";
+import { StudentUpdate } from "./Components/AllStudent/StudentUpdate";
+import { StudentDelete } from "./Components/AllStudent/StudentDelete";
 export const App = () => {
   return (
     <div>
@@ -19,6 +32,22 @@ export const App = () => {
         <Route path="/User" element={<User />} />
         <Route path="/UserCreate" element={<UserCreate />} />
         <Route path="/UserUpdate/:id" element={<UserUpdate />} />
+        <Route path="/UserDelete/:id" element={<UserDelete />} />
+
+        <Route path="/Receipt" element={<Receipt />} />
+        <Route path="/ReceiptCreate" element={<ReceiptCreate />} />
+        <Route path="/ReceiptUpdate/:id" element={<ReceiptUpdate />} />
+        <Route path="/ReceiptDelete/:id" element={<ReceiptDelete />} />
+
+        <Route path="/Class" element={<Class />} />
+        <Route path="/ClassCreate" element={<ClassCreate />} />
+        <Route path="/ClassUpdate/:id" element={<ClassUpdate />} />
+        <Route path="/ClassDelete/:id" element={<ClassDelete />} />
+
+        <Route path="/Student" element={<Student />} />
+        <Route path="/StudentCreate" element={<StudentCreate />} />
+        <Route path="/StudentUpdate/:id" element={<StudentUpdate />} />
+        <Route path="/StudentDelete/:id" element={<StudentDelete />} />
 
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
 
@@ -27,6 +56,7 @@ export const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SingUp />} />
         <Route path="/change" element={<Change />} />
+        
 
         {/* <Route path="/Profile/:id" element={<UpdateUserProfile />} />
                 

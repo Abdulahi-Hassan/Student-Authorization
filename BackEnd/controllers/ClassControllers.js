@@ -5,11 +5,7 @@ const UserModel = require('../model/UserModel')
 require('dotenv').config()
 const GetClass = async (req, res) => {
     try {
-        let GetClass = await ClassModel.find().populate({
-            path: "UserID",
-            model: "user",
-            select: "-_id UserName Email Role Status Password Profile"
-        })
+        let GetClass = await ClassModel.find().populate("Email")
         res.send(GetClass)
 
     } catch (error) {
@@ -18,7 +14,7 @@ const GetClass = async (req, res) => {
 }
 const GetClassID = async (req, res) => {
     try {
-        let {Class} = req.AllData;
+        let {Class} = req.AllData && req.AllData;
         let GetClassID = await ClassModel.findById(Class)
         res.send(GetClassID)
     } catch (error) {
@@ -52,9 +48,20 @@ const PostClass = async (req, res) => {
 }
 const PutClass = async (req, res) => {
     try {
-        let { ClassStatus, ClassName, ClassDate, UserID } = req.body
+        let { ClassStatus, ClassName, Email } = req.body
         let { id } = req.params;
-        let Update = await ClassModel.findByIdAndUpdate(id, { ClassStatus, ClassName, ClassDate, UserID }, { new: true })
+
+       
+        // if (UserExist) return res.send("User Already Exist")
+
+     
+        let Update = await ClassModel.findByIdAndUpdate(id, { ClassStatus, ClassName }, { new: true })
+
+    
+        await UserModel.findByIdAndUpdate(Update.Email, {
+            Email: Email
+        }, { new: true })
+        await Update.save()
         res.send({
             status: "Success",
             message: "Successfully Update Data Class",
@@ -67,8 +74,6 @@ const PutClass = async (req, res) => {
 const DeleteClass = async (req, res) => {
     try {
         let { id } = req.params;
-        let ReceiptData = await ReceiptModel.find({ ClassID: id })
-        await ReceiptModel.deleteMany({ _id: ReceiptData })
         let Remove = await ClassModel.findByIdAndDelete(id)
         if (!Remove) return res.send('')
         res.send({

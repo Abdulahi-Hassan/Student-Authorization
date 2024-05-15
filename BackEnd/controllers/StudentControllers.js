@@ -14,7 +14,7 @@ const GetStudent = async (req, res) => {
 }
 const GetStudentID = async (req, res) => {
     try {
-        const { Student } = req.AllData
+        const { Student } = req.AllData && req.AllData
         let GetStudentID = await StudentModel.findById(Student)
         res.send(GetStudentID)
     } catch (error) {
@@ -47,9 +47,15 @@ const PostStudent = async (req, res) => {
 }
 const PutStudent = async (req, res) => {
     try {
-        let { Name, Gender, Address, Balance, AmountPaid, TotalAmount, Status, Phone } = req.body
+        let { Name, Gender, Address, Balance, AmountPaid, TotalAmount, Status, Phone, Email } = req.body
+
         let { id } = req.params;
         let Update = await StudentModel.findByIdAndUpdate(id, { Name, Gender, Address, Balance, AmountPaid, TotalAmount, Status, Phone })
+
+
+        await UserModel.findByIdAndUpdate(Update.Email, {
+            Email: Email
+        }, { new: true })
         res.send({
             status: "Success",
             message: "Successfully Update Data Student",

@@ -16,8 +16,8 @@ const GetReceipt = async (req, res) => {
 }
 const GetReceiptID = async (req, res) => {
     try {
-        let { User } = req.AllData;
-        let payment = await PaymentModel.find({ Email: User })
+        let { Payment } = req.AllData && req.AllData;
+        let payment = await PaymentModel.findById(Payment)
         res.send(payment)
     } catch (error) {
         res.send(error.message)
@@ -29,6 +29,7 @@ const ReceiptPost = async (req, res) => {
         let { Name, Email, ClassName, ReceiptAmount } = req.body;
         let Insert = new PaymentModel({ Name, Email, ReceiptAmount, ClassName })
 
+
         let { error } = ReceiptValidation(req.body)
         if (error) return res.send(error.message)
         let UserData = await UserModel.findOne({ Email: Email })
@@ -36,7 +37,8 @@ const ReceiptPost = async (req, res) => {
         let StudentData = await StudentModel.findOne({ Name: Name })
         if (!StudentData) return res.send("Student not found")
         let ClassData = await ClassModel.findOne({ ClassName: ClassName })
-        if (!ClassData) return res.send("class not found")
+        if (!ClassData) return res.send("Class not found")
+
 
         let CurrencyStatus = ""
         let TotalAmountPaid = parseFloat(StudentData.AmountPaid + ReceiptAmount)
@@ -103,31 +105,44 @@ const PutReceipt = async (req, res) => {
     try {
         let { id } = req.params
         let { Name, Email, ClassName, ReceiptAmount } = req.body;
-        let Insert = new PaymentModel({ Name, Email, ReceiptAmount, ClassName })
         let { error } = ReceiptValidation(req.body)
         if (error) return res.send(error.message)
-        let UserData = await UserModel.findOne({ Email: Email })
-        if (!UserData) return res.send("User not found")
+
         let StudentData = await StudentModel.findOne({ _id: id })
-        if (!StudentData) return res.send("Student not found")
-        let ClassData = await ClassModel.findOne({ ClassName: ClassName })
-        if (!ClassData) return res.send("class not found")
+        let ClassData = await ClassModel.findOne({ Email: StudentData.Email })
+        let UserData = await UserModel.findOne({ _id: StudentData.Email })
+
+
+
+
         let TotalAmountPaid = parseFloat(StudentData.Balance + ReceiptAmount)
         let CurrencyBalance = StudentData.TotalAmount + ReceiptAmount
         if (ReceiptAmount === 0) {
             res.send('Please Enter Digit Greater than 0')
             return
         }
+
+
+
         await StudentModel.findByIdAndUpdate(StudentData._id, {
             Balance: TotalAmountPaid,
             TotalAmount: CurrencyBalance,
-            Status: "UnPaid"
+            Status: "UnPaid",
+            Name: Name
         }, { new: true })
+
+        await UserModel.findByIdAndUpdate(UserData._id, {
+            Email: Email
+        }, { new: true })
+
+        await ClassModel.findByIdAndUpdate(ClassData._id, {
+            ClassName: ClassName
+        }, { new: true })
+
 
         res.send({
             status: "Success",
-            message: "Successfully Inserted Data Receipt",
-            info: Insert
+            message: "Successfully Inserted and Update Data Receipt",
         })
 
 

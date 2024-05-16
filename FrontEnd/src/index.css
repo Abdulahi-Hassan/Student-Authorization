@@ -212,7 +212,7 @@ th {
   display: block;
 }
 
-@media screen and (max-width: 1024px) {
+ @media screen and (max-width: 1024px) {
   header {
     width: 100%;
     position: fixed;
@@ -246,6 +246,7 @@ th {
     margin-bottom: 30%;
     height: 500px;
   }
+ 
 }
 
 @media screen and (max-width: 992px) {
@@ -307,10 +308,11 @@ th {
     justify-content: center;
     flex-direction: column;
     position: absolute;
-    top: 100%;
-    width: 110%;
-    left: -32px;
+    top: 110%;
+    margin:0 auto;
+    width:100%;
     background-color: #0e0505;
+    right: 0;
   }
 
   nav a {
@@ -411,10 +413,12 @@ th {
   .home {
     margin-top: 52px;
   }
-}
+} 
 @media screen and (max-width: 600px) {
   nav {
     display: none;
+   
+
   }
 
   header {
@@ -422,10 +426,10 @@ th {
   }
   .login {
     background-color: black;
-    margin-top: 32px;
+    margin-top: 50px;
   }
   .card {
-    margin-top: -18%;
+    margin-top: -19%;
   }
 
   nav.menu {
@@ -434,9 +438,11 @@ th {
     justify-content: center;
     flex-direction: column;
     position: absolute;
-    top: 100%;
-    width: 110%;
+    top: 110%;
+    margin:0 auto;
+    width:100%;
     background-color: #0e0505;
+    right: 0;
   }
 
   nav a {

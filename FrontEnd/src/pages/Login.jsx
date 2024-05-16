@@ -32,6 +32,7 @@ const Login = () => {
             }
             
             let { data } = await axios.post(endpoint + '/login', login)
+           
 
            
             if (data.status === "Success") {
@@ -39,7 +40,7 @@ const Login = () => {
                 localStorage.setItem('user', JSON.stringify(data.UserExist))
                 localStorage.setItem('token', data.token)
                 toast.success(data.message)
-                if (data.Role === "true") {
+                if (data.user.Role === "true") {
                     setTimeout(() => {
                         navigate('/AdminDashboard')
                     }, 3000);

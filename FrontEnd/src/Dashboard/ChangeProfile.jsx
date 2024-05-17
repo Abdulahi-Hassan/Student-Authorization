@@ -7,7 +7,7 @@ export const ChangeProfile = () => {
   let { id } = useParams();
   let navigate = useNavigate();
 
-  let UserData = JSON.parse(localStorage.getItem("AllUser"));
+  let UserData = JSON.parse(localStorage.getItem("AllUser")) && JSON.parse(localStorage.getItem("AllUser"));
 
   let ImageRef = useRef(null);
 

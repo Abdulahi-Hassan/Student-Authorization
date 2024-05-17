@@ -1,5 +1,5 @@
 export const UserTable=()=>{
-    let ApiData=JSON.parse(localStorage.getItem("ApiData"))
+    let ApiData=JSON.parse(localStorage.getItem("ApiData")) && JSON.parse(localStorage.getItem("ApiData"))
     return(
         <div className="block" style={{ padding: "0 15%", marginLeft: "32px" }}>
     

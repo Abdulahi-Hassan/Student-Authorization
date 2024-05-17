@@ -3,12 +3,12 @@ import imagelogo from "../Images/f.png";
 import { TiThMenu } from "react-icons/ti";
 import "../index.css";
 
-let User = JSON.parse(localStorage.getItem("user"));
-let user = JSON.parse(localStorage.getItem("AllUser"));
+let User = JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user"));
+let user = JSON.parse(localStorage.getItem("AllUser")) && JSON.parse(localStorage.getItem("AllUser"));
 
-let student = JSON.parse(localStorage.getItem("student"));
-let Class = JSON.parse(localStorage.getItem("class"));
-let receipt = JSON.parse(localStorage.getItem("receipt"));
+let student = JSON.parse(localStorage.getItem("student")) &&  JSON.parse(localStorage.getItem("student"));
+let Class = JSON.parse(localStorage.getItem("class")) && JSON.parse(localStorage.getItem("class"));;
+let receipt = JSON.parse(localStorage.getItem("receipt")) && JSON.parse(localStorage.getItem("receipt"));
 
 
 export const AdminDashboard = () => {

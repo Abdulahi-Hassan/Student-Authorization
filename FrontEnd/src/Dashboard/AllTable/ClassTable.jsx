@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 export const ClassTable=()=>{
-   let Class=JSON.parse(localStorage.getItem("Class"))
+   let Class=JSON.parse(localStorage.getItem("Class")) && JSON.parse(localStorage.getItem("Class"))
     return(
         <div className="block" style={{ padding: "0 15%", marginLeft: "32px" }}>
     

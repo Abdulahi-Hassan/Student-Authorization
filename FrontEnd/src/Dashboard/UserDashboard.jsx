@@ -7,7 +7,7 @@ import { ClassTable } from "./AllTable/ClassTable";
 import { StudentTable } from "./AllTable/StudentTable";
 import { UserTable } from "./AllTable/UserTable";
 export const UserDashboard = () => {
-  let user = JSON.parse(localStorage.getItem("AllUser"));
+  let user = JSON.parse(localStorage.getItem("AllUser")) && JSON.parse(localStorage.getItem("AllUser"));
   let navigate = useNavigate();
   useEffect(() => {
     navigate("/UserDashboard");

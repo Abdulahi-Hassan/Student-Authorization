@@ -1,5 +1,5 @@
 export const StudentTable=()=>{
-   let Student=JSON.parse(localStorage.getItem("Student"))
+   let Student=JSON.parse(localStorage.getItem("Student")) && JSON.parse(localStorage.getItem("Student"))
     
     return(
         <div className="block" style={{ padding: "0 15%", marginLeft: "32px" }}>

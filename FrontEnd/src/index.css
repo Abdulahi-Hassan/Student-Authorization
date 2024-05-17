@@ -185,6 +185,24 @@ nav a {
 .singleuser.open {
   display: block;
 }
+.usertable {
+  display: none;
+}
+.usertable.open {
+  display: block;
+}
+.classtable {
+  display: none;
+}
+.classtable.open {
+  display: block;
+}
+.studenttable {
+  display: none;
+}
+.studenttable.open {
+  display: block;
+}
 
 td {
   text-align: center;
@@ -204,6 +222,27 @@ th {
   font-weight: bold;
   text-decoration: none;
 }
+.counter{
+  background-color: blue;
+  display: flex;
+  padding-top: 6%;
+  justify-content: space-around;
+  width: 100%;
+  box-shadow: 10px 0 200px rgba(0, 0, 0, 0.4);
+  margin-top: 323px;
+}
+.count{
+  border-radius: 50%;
+  background-color: red;
+  width: 10%;
+  height: 20%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 
 .singleuserimage {
   display: none;
@@ -250,6 +289,8 @@ th {
 }
 
 @media screen and (max-width: 992px) {
+ 
+
   header {
     width: 100%;
     position: fixed;
@@ -293,13 +334,36 @@ th {
   }
 }
 
+
 @media screen and (max-width: 768px) {
   nav {
     display: none;
+   
+
+  }
+
+  
+  .count{
+    border-radius: 50%;
+    background-color: red;
+    width: 20%;
+    height: 20%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   header {
     padding: 15px;
+  }
+  .login {
+    background-color: black;
+    margin-top: 50px;
+  }
+  .card {
+    margin-top: -19%;
   }
 
   nav.menu {
@@ -336,9 +400,6 @@ th {
     padding: 10px;
   }
 
-  .service {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .home {
     grid-template-columns: repeat(2, 1fr);
     padding: 10% 0;
@@ -356,12 +417,8 @@ th {
     order: -1;
   }
 
-  .login {
-    background-color: black;
-    margin-top: 32px;
-  }
-  .card {
-    margin-top: -18%;
+  .service {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .services,
@@ -392,7 +449,7 @@ th {
   .user {
     margin-top: 53px;
     height: 550px;
-    width: 498px;
+    width: 390px;
     left: -270px;
     a {
       margin-left: 250px;
@@ -413,12 +470,26 @@ th {
   .home {
     margin-top: 52px;
   }
-} 
+}
+
 @media screen and (max-width: 600px) {
   nav {
     display: none;
    
 
+  }
+
+  
+  .count{
+    border-radius: 50%;
+    background-color: red;
+    width: 20%;
+    height: 15%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   header {
@@ -515,7 +586,7 @@ th {
   .user {
     margin-top: 53px;
     height: 550px;
-    width: 498px;
+    width: 390px;
     left: -270px;
     a {
       margin-left: 250px;

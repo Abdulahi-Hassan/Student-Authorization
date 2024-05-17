@@ -21,11 +21,18 @@ const GetUser = async (req, res) => {
 
 const PutUser = async (req, res) => {
     try {
-        let { Email, UserName, Password, Role, Profile, Status } = req.body
+
+        
+
+        let { Email, UserName, Password, Role, Status } = req.body
         let { id } = req.params;
         let salt = await bcrypt.genSalt(10)
 
-        let Update = await UserModel.findByIdAndUpdate(id, { Email, UserName, Role, Profile, Status, Password }, { new: true })
+        let Update = await UserModel.findByIdAndUpdate(id, {Email, UserName, Role,Status, Password }, { new: true })
+        if(req.file){
+            Update.Avator=req.file.filename
+
+        }
         if (Password) {
             Update.Password = await bcrypt.hash(Password, salt)
         }
@@ -40,6 +47,8 @@ const PutUser = async (req, res) => {
         res.send(error.message)
     }
 }
+
+
 const DeleteUser = async (req, res) => {
     try {
         let { id } = req.params;
@@ -70,4 +79,4 @@ const DeleteUser = async (req, res) => {
     }
 }
 
-module.exports = { PutUser, DeleteUser, GetUser, GetAllUser }
+module.exports = {PutUser, DeleteUser, GetUser, GetAllUser }

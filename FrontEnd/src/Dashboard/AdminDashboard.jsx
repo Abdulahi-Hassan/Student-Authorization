@@ -2,8 +2,15 @@ import { Link } from "react-router-dom";
 import imagelogo from "../Images/f.png";
 import { TiThMenu } from "react-icons/ti";
 import "../index.css";
-// import { SingleDash } from './SingleDashboard';
-import { User } from "../Components/AllUser/User";
+
+let User = JSON.parse(localStorage.getItem("user"));
+let user = JSON.parse(localStorage.getItem("AllUser"));
+
+let student = JSON.parse(localStorage.getItem("student"));
+let Class = JSON.parse(localStorage.getItem("class"));
+let receipt = JSON.parse(localStorage.getItem("receipt"));
+
+
 export const AdminDashboard = () => {
   const Handle = () => {
     let user = document.querySelector(".user");
@@ -15,18 +22,18 @@ export const AdminDashboard = () => {
   };
   return (
     <div className="row">
-      <div className="col-3">
+      <div className="col-3 ">
         <div className="user">
           <TiThMenu className="iconMenu" onClick={Handle} />
           <Link to="/contuct" className="bg">
             <img className="image" src={imagelogo} alt="" />
           </Link>
           <Link
-            to="/AdminDashboard"
-            onClick={SingleDashboard}
-            className="active SingeUser text-light fs-5"
+            to="/AdminDashboard "
+            className="bg-white text-danger "
+            style={{ lineHeight: "45px" }}
           >
-            Dashboard
+            {user.UserName}
           </Link>
           <Link to="/Student">Student</Link>
           <Link to="/Class">Class</Link>
@@ -34,12 +41,23 @@ export const AdminDashboard = () => {
           <Link to="/Receipt">Payment</Link>
         </div>
       </div>
-      <div
-        className="col-8 bg-dark singleuser  text-white"
-        style={{ width: "900px" }}
-      >
-        fdklfsda
-        <User />
+      <div className="col counter mt-5">
+        <div className="count text-center text-white  ">
+          Student
+          <div className="text-white fs-2">{student.length}</div>
+        </div>
+        <div className="count text-center text-white  ">
+          User
+          <div className="text-white fs-2">{User.length}</div>
+        </div>
+        <div className="count text-center text-white  ">
+          Class
+          <div className="text-white fs-2">{Class.length}</div>
+        </div>
+        <div className="count text-center text-white  ">
+          Receipt
+          <div className="text-white fs-2">{receipt.length}</div>
+        </div>
       </div>
     </div>
   );

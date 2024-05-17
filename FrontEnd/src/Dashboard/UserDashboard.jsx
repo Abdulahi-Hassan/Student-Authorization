@@ -1,12 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 import "../index.css";
-// import { SingleDash } from '../p';
 import { useEffect } from "react";
 import { SingleDash } from "./SingleDashboard";
-import { ReceiptTable } from "./AllTable/ReceiptTable";
+import { ClassTable } from "./AllTable/ClassTable";
+import { StudentTable } from "./AllTable/StudentTable";
+import { UserTable } from "./AllTable/UserTable";
 export const UserDashboard = () => {
-  // let user = JSON.parse(localStorage.getItem('user'))
+  let user = JSON.parse(localStorage.getItem("AllUser"));
   let navigate = useNavigate();
   useEffect(() => {
     navigate("/UserDashboard");
@@ -21,6 +22,12 @@ export const UserDashboard = () => {
     singleuser.classList.toggle("open");
     let singleuserimage = document.querySelector(".singleuserimage");
     singleuserimage.classList.remove("open");
+    let studenttable = document.querySelector(".studenttable");
+    studenttable.classList.remove("open");
+    let usertable = document.querySelector(".usertable");
+    usertable.classList.remove("open");
+    let classtable = document.querySelector(".classtable");
+    classtable.classList.remove("open");
   };
   const ImageEdit = () => {
     let singleuserimage = document.querySelector(".singleuserimage");
@@ -28,28 +35,54 @@ export const UserDashboard = () => {
     singleuserimage.classList.toggle("open");
     const singleuser = document.querySelector(".singleuser");
     singleuser.classList.remove("open");
+    studenttable.classList.remove("open");
+    let usertable = document.querySelector(".usertable");
+    usertable.classList.remove("open");
+    let classtable = document.querySelector(".classtable");
+    classtable.classList.remove("open");
   };
 
-  const HandleStudent=()=>{
-    console.log('welcome')
-  }
-  const HandleUser=()=>{
-    console.log('welcome')
-  }
-  const HandleClass=()=>{
-    console.log('welcome')
-  }
+  const HandleStudent = () => {
+    let studenttable = document.querySelector(".studenttable");
+    studenttable.classList.toggle("open");
+    const singleuser = document.querySelector(".singleuser");
+    singleuser.classList.remove("open");
+    let usertable = document.querySelector(".usertable");
+    usertable.classList.remove("open");
+    let classtable = document.querySelector(".classtable");
+    classtable.classList.remove("open");
+  };
+  const HandleUser = () => {
+    let usertable = document.querySelector(".usertable");
+    usertable.classList.toggle("open");
+    let studenttable = document.querySelector(".studenttable");
+    studenttable.classList.remove("open");
+    let classtable = document.querySelector(".classtable");
+    classtable.classList.remove("open");
+    const singleuser = document.querySelector(".singleuser");
+    singleuser.classList.remove("open");
+  };
+  const HandleClass = () => {
+    let classtable = document.querySelector(".classtable");
+    classtable.classList.toggle("open");
+    const singleuser = document.querySelector(".singleuser");
+    singleuser.classList.remove("open");
+    let studenttable = document.querySelector(".studenttable");
+    studenttable.classList.remove("open");
+    let usertable = document.querySelector(".usertable");
+    usertable.classList.remove("open");
+  };
 
   return (
     <div className="row">
       <div className="col-3">
         <div className="user">
           <TiThMenu className="iconMenu" onClick={Handle} />
-          <Link to={`/Profile/${1}`} className="bg">
+          <Link to={`/ChangeProfile/${user._id}`} className="bg">
             <img
               onClick={ImageEdit}
               className="image"
-              src={`http://localhost:3000/` + "user.Profile"}
+              src={`http://localhost:3000/images/` + user.Avator}
               alt=""
             />
           </Link>
@@ -58,7 +91,7 @@ export const UserDashboard = () => {
             className="bg-white text-danger "
             style={{ lineHeight: "45px" }}
           >
-            {/* {user.Name} */}
+            {user.UserName}
           </Link>
           <Link
             to="/UserDashboard"
@@ -67,11 +100,17 @@ export const UserDashboard = () => {
           >
             Dashboard
           </Link>
-          <Link to="/UserDashboard" onClick={HandleStudent}>Student</Link>
-          <Link to="/UserDashboard" onClick={HandleUser}>User</Link>
-          <Link to="/UserDashboard" onClick={HandleClass}>Class</Link>
-          <Link to="/UserDashboard" onClick={ImageEdit}>
-            Receipt
+          <Link to="/UserDashboard" onClick={HandleStudent}>
+            Student
+          </Link>
+          <Link to="/UserDashboard" onClick={HandleUser}>
+            User
+          </Link>
+          <Link to="/UserDashboard" onClick={HandleClass}>
+            Class
+          </Link>
+          <Link to={`/ChangeProfile/${user._id}`} className="bsg">
+            Settings
           </Link>
         </div>
       </div>
@@ -79,7 +118,17 @@ export const UserDashboard = () => {
         <SingleDash />
       </div>
       <div className="col singleuserimage">
-        <ReceiptTable />
+        {/* <ReceiptTable /> */}
+        receipt
+      </div>
+      <div className="col classtable">
+        <ClassTable />
+      </div>
+      <div className="col studenttable">
+        <StudentTable />
+      </div>
+      <div className="col usertable">
+        <UserTable />
       </div>
     </div>
   );

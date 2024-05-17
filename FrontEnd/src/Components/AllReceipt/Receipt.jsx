@@ -36,6 +36,8 @@ export const Receipt = () => {
             <th>E-mail</th>
             <th>Class</th>
             <th>ReceiptAmount</th>
+            <th>Date</th>
+
             <th>Action</th>
           </tr>
         </thead>

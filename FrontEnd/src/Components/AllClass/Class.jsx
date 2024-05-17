@@ -68,8 +68,10 @@ export const Class = () => {
                 }
               </td>
             </tr>
+            
 
          ))}
+         
         </tbody>
       </table>
       <Toaster />

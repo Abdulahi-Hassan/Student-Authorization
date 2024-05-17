@@ -23,7 +23,6 @@ const UserValidation = (UV) => {
 
 const LoginValidation = (l) => {
     const login = joi.object({
-        Email: joi.string().required().email(),
         Password: joi.string().required()
     })
 
@@ -43,6 +42,23 @@ const StudentValidation = (SV) => {
     return studentvalidation.validate(SV)
 }
 
+const EmailValidation = (Email) => {
+    const Emailvalidation = joi.object({
+        Email: joi.string().required().email()
+    })
+
+    return Emailvalidation.validate(Email)
+}
+
+const ChangeValidation = (Change) => {
+    const studentvalidation = joi.object({
+        Password: joi.string().required(),
+        Confirm: joi.string().required()
+    })
+
+    return studentvalidation.validate(Change)
+}
+
 
 
 const ClassValidation = (CV) => {
@@ -56,4 +72,4 @@ const ClassValidation = (CV) => {
 }
 
 
-module.exports = { ClassValidation, StudentValidation, UserValidation, ReceiptValidation, LoginValidation }
+module.exports = { EmailValidation,ChangeValidation,ClassValidation, StudentValidation, UserValidation, ReceiptValidation, LoginValidation }

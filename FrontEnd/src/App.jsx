@@ -24,6 +24,7 @@ import { Student } from "./Components/AllStudent/Student";
 import { StudentCreate } from "./Components/AllStudent/StudentCreate";
 import { StudentUpdate } from "./Components/AllStudent/StudentUpdate";
 import { StudentDelete } from "./Components/AllStudent/StudentDelete";
+import { ChangeProfile } from "./Dashboard/ChangeProfile";
 export const App = () => {
   return (
     <div>
@@ -53,6 +54,8 @@ export const App = () => {
 
         <Route path="/UserDashboard" element={<UserDashboard />} />
 
+       
+        <Route path="/ChangeProfile/:id" element={<ChangeProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SingUp />} />
         <Route path="/change" element={<Change />} />

@@ -34,10 +34,10 @@ const Login = () => {
             let { data } = await axios.post(endpoint + '/login', login)
            
 
-           
+      
             if (data.status === "Success") {
                
-                localStorage.setItem('user', JSON.stringify(data.UserExist))
+                localStorage.setItem('AllUser', JSON.stringify(data.user))
                 localStorage.setItem('token', data.token)
                 toast.success(data.message)
                 if (data.user.Role === "true") {
@@ -114,7 +114,7 @@ export const Change = () => {
         if(EmailRef.current.value===""){
             EmailRef.current.focus()
         }
-        let { data } = await axios.post(endpoint + 'change', change)
+        let { data } = await axios.post(endpoint + '/change', change)
         console.log(data)
         if (data.status === "Success") {
             toast.success(data.message)
@@ -168,67 +168,135 @@ export const Change = () => {
 
 
 export const SingUp = () => {
-    let navigate = useNavigate()
+    let navigate = useNavigate();
+    let ImageRef = useRef();
     const [User, setUser] = useState({
-        Name: '',
-        Email: '',
-        Password: '',
-    })
-
-    let EmailRef=useRef()
-    let PassRef=useRef()
-    let NameRef=useRef()
+      UserName: "",
+      Email: "",
+      Password: "",
+      Profile: '',
+    });
     const HandleLogin = async (e) => {
-        e.preventDefault()
-        
-        if(PassRef.current.value===""){
-            PassRef.current.focus()
-        }
-        if(EmailRef.current.value===""){
-            EmailRef.current.focus()
-        }
-        if(NameRef.current.value===""){
-            NameRef.current.focus()
-        }
-        let { data } = await axios.post(endpoint + 'signup', User)
-        if (data.status === "Success") {
-            toast.success(data.message)
-            setTimeout(() => {
-                navigate('/login')
-            }, 3000);
-        } else {
-            toast.error(data)
-        }
-    }
+      e.preventDefault();
+      
+      const Formdata=new FormData()
+      Formdata.append("UserName",User.UserName)
+      Formdata.append("Email",User.Email)
+      Formdata.append("Profile",User.Profile)
+      Formdata.append("Password",User.Password)
+      let { data } = await axios.post(endpoint+'/user/signup',Formdata);
+      if (data.status === "Success") {
+        toast.success(data.message);
+        setTimeout(() => {
+          navigate("/Login");
+        }, 3000);
+      } else {
+        toast.error(data);
+      }
+    };
     return (
-        <div className="contaier d-flex align-items-center  text-center  justify-content-center   login" style={{ height: "600px" }}>
-            <div className="card" style={{ width: "450px", borderRadius: "12px", height: "340px" }}>
-                <div className="card-title   " style={{ fontSize: "38px", fontWeight: "600" }}>
-                    <strong className="ms-5">Create User</strong>
-                    <Link to='/login' className=" btn btn-danger mt-2 mx-2" style={{ float: 'right' }} >X</Link>
+      <div
+        className="contaier d-flex align-items-center  text-center  justify-content-center  bg-info"
+        style={{ height: "600px" }}
+      >
+        <div
+          className="card"
+          style={{ width: "450px", borderRadius: "12px", height: "400px" }}
+        >
+          <div
+            className="card-title   "
+            style={{ fontSize: "38px", fontWeight: "600" }}
+          >
+            <strong className="ms-5">Create User</strong>
+            <Link
+              to="/Login"
+              className=" btn btn-danger mt-2 mx-2"
+              style={{ float: "right" }}
+            >
+              X
+            </Link>
+          </div>
+          <div className="card-body ">
+            <form onSubmit={HandleLogin}>
+              <div className="row">
+                <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                  <input
+                    type="text"
+                    className="form-control "
+                    placeholder="Enter Your Name"
+                    value={User.UserName}
+                    onChange={(e) =>
+                      setUser({
+                          UserName: e.target.value,
+                        Email: User.Email,
+                        Password: User.Password,
+                        Profile: User.Profile,
+                      })
+                    }
+                  />
                 </div>
-                <div className="card-body ">
-                    <form onSubmit={HandleLogin}>
-                        <div className="row">
-                            <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input type="text" ref={NameRef} className="form-control " placeholder="Enter Your Name" value={User.Name} onChange={(e) => setUser({ Name: e.target.value, Email: User.Email, Password: User.Password })} />
-                            </div>
-
-                            <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input type="text" ref={EmailRef} className="form-control mt-4" placeholder="Enter Your E-mail" value={User.Email} onChange={(e) => setUser({ Email: e.target.value, Name: User.Name, Password: User.Password })} />
-                            </div>
-                            <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input type="text" ref={PassRef}className="form-control mt-4" placeholder="Enter Your Password" value={User.Password} onChange={(e) => setUser({ Password: e.target.value, Email: User.Email, Name: User.Name })} />
-                            </div>
-
-                            <div className="col-6" style={{ width: "30%", margin: "0 auto" }}>
-                                <button type="text" className="form-control btn btn-primary mt-4"  >Submit</button>
-                            </div>
-                        </div>
-                    </form>
+  
+                <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                  <input
+                    type="text"
+                    className="form-control mt-4"
+                    placeholder="Enter Your E-mail"
+                    value={User.Email}
+                    onChange={(e) =>
+                      setUser({
+                        Email: e.target.value,
+                        UserName: User.UserName,
+                        Password: User.Password,
+                        Profile: User.Profile,
+                      })
+                    }
+                  />
                 </div>
-            </div>
-            <Toaster />
+                <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                  <input
+                    type="text"
+                    className="form-control mt-4"
+                    placeholder="Enter Your Password"
+                    value={User.Password}
+                    onChange={(e) =>
+                      setUser({
+                        Password: e.target.value,
+                        Email: User.Email,
+                        UserName: User.UserName,
+                        Profile: User.Profile,
+                      })
+                    }
+                  />
+                </div>
+                <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                  <input
+                    type="file"
+                    className="form-control mt-4"
+                    ref={ImageRef}
+                    onChange={(e) =>
+                      setUser({
+                        Profile: e.target.files[0],
+                        Email: User.Email,
+                        UserName: User.UserName,
+                        Password: User.Password,
+                      })
+                    }
+                  />
+                </div>
+  
+                <div className="col-6" style={{ width: "30%", margin: "0 auto" }}>
+                  <button
+                    type="text"
+                    className="form-control btn btn-primary mt-4"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-    )
-}
+        <Toaster />
+      </div>
+    );
+  };

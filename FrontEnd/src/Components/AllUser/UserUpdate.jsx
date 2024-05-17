@@ -7,7 +7,7 @@ export const UserUpdate = () => {
     let { id } = useParams()
     let navigate = useNavigate()
 
-    let UserData = JSON.parse(localStorage.getItem('user'))
+    let UserData = JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user'))
     let UserExist = UserData.filter(data => data._id === id)[0]
     const { Role, UserName, Email, Status } = UserExist
 

@@ -6,7 +6,7 @@ import { endpoint } from "../../pages/Login";
 export const StudentUpdate = () => {
   let navigate = useNavigate();
   let { id } = useParams();
-  let UserData = JSON.parse(localStorage.getItem("student"));
+  let UserData = JSON.parse(localStorage.getItem("student")) && JSON.parse(localStorage.getItem("student"));
   let UserExist = UserData.filter((data) => data._id === id)[0];
   const { Name, Phone, Gender, Email, Address } = UserExist;
   const [User, setUser] = useState({

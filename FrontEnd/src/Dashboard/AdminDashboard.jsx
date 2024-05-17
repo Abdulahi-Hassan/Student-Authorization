@@ -25,8 +25,13 @@ export const AdminDashboard = () => {
       <div className="col-3 ">
         <div className="user">
           <TiThMenu className="iconMenu" onClick={Handle} />
-          <Link to="/contuct" className="bg">
-            <img className="image" src={imagelogo} alt="" />
+          <Link  className="bg">
+            <img
+             
+              className="image"
+              src={`http://localhost:3000/images/` + user.Avator}
+              alt=""
+            />
           </Link>
           <Link
             to="/AdminDashboard "

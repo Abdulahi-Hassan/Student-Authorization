@@ -6,7 +6,7 @@ import { endpoint } from "../../pages/Login";
 export const ReceiptUpdate = () => {
   let { id } = useParams();
   let navigate = useNavigate();
-  let ReceiptData = JSON.parse(localStorage.getItem("receipt"));
+  let ReceiptData = JSON.parse(localStorage.getItem("receipt")) && JSON.parse(localStorage.getItem("receipt"));
   let ReceiptExist = ReceiptData.filter((data) => data.Name._id===id)[0];
   const {Name,Email,ClassName,ReceiptAmount}=ReceiptExist
   

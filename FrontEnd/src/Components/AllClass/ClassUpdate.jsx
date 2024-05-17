@@ -6,7 +6,7 @@ import { endpoint } from "../../pages/Login";
 export const ClassUpdate= () => {
   let {id}=useParams()
   let navigate = useNavigate();
-  let ClassData=JSON.parse(localStorage.getItem('class'))
+  let ClassData=JSON.parse(localStorage.getItem('class')) && JSON.parse(localStorage.getItem('class'))
   const ClassExist=ClassData.filter(data=>data._id===id)[0]
 
   const {Email,ClassName,ClassStatus}=ClassExist

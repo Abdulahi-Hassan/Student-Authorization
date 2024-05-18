@@ -91,7 +91,7 @@ export const UserDashboard = () => {
             className="bg-white text-danger "
             style={{ lineHeight: "45px" }}
           >
-            {user.UserName}
+           {user &&  user.UserName }
           </Link>
           <Link
             to="/UserDashboard"

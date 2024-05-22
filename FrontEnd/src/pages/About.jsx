@@ -1,4 +1,4 @@
-import aboutimage from '../Images/f.png'
+import aboutimage from '../Images/about-JucQ-evo.jpg'
 export const About = () => {
   return (
     <div className="container">

@@ -1,4 +1,4 @@
-const { ReceiptValidation } = require('../validation/AllValidation')
+const { ReceiptValidation, NameValidation, ClassNameValidation, EmailValidation } = require('../validation/AllValidation')
 const StudentModel = require('../model/StudentModel')
 const UserModel = require('../model/UserModel')
 const ClassModel = require('../model/ClassModel')
@@ -27,24 +27,28 @@ const ReceiptPost = async (req, res) => {
 
     try {
         let { Name, Email, ClassName, ReceiptAmount } = req.body;
-        let Insert = new PaymentModel({ Name, Email, ReceiptAmount, ClassName })
+        let PayMoney=parseInt(ReceiptAmount)
 
-
-        let { error } = ReceiptValidation(req.body)
-        if (error) return res.send(error.message)
+        let { error: email } = EmailValidation({ Email })
+        if (email) return res.send(email.message)
         let UserData = await UserModel.findOne({ Email: Email })
         if (!UserData) return res.send("User not found")
+        let { error: name } = NameValidation({ Name })
+        if (name) return res.send(name.message)
         let StudentData = await StudentModel.findOne({ Name: Name })
         if (!StudentData) return res.send("Student not found")
+        let { error: clas } = ClassNameValidation({ ClassName })
+        if (clas) return res.send(clas.message)
         let ClassData = await ClassModel.findOne({ ClassName: ClassName })
         if (!ClassData) return res.send("Class not found")
-
-
+        let Insert = new PaymentModel({ Name, Email, ReceiptAmount, ClassName })
+        let { error } = ReceiptValidation(req.body)
+        if (error) return res.send(error.message)
         let CurrencyStatus = ""
-        let TotalAmountPaid = parseFloat(StudentData.AmountPaid + ReceiptAmount)
+        let TotalAmountPaid = parseFloat(StudentData.AmountPaid + PayMoney)
         let CurrencyBalance = StudentData.TotalAmount - TotalAmountPaid
 
-        if (ReceiptAmount === 0) {
+        if (PayMoney === 0) {
             res.send('Please Enter Digit Greater than 0')
             return
         }

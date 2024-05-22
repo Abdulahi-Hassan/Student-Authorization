@@ -1,6 +1,6 @@
 import {About} from '../pages/About'
 import {Services} from '../pages/Services'
-import imagehome from '../Images/e.png'
+import imagehome from '../Images/left-image-C8IKqx-W.png'
 import { Contuct } from './Contuct'
 export const Home=()=>{
     return(

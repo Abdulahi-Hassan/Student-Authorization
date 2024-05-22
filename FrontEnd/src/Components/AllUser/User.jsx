@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import toast, { Toaster } from "react-hot-toast";
 import { endpoint } from "../../pages/Login";
 export const User = () => {
     const [ApiData,setApiData]=useState([])
@@ -16,7 +15,7 @@ export const User = () => {
    }
   };
 
-  localStorage.setItem('user',JSON.stringify(ApiData))
+  
 
   useEffect(() => {
     SendRequest();
@@ -72,7 +71,6 @@ export const User = () => {
          ))}
         </tbody>
       </table>
-      <Toaster />
     </div>
   );
 };

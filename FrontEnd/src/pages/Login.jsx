@@ -10,8 +10,7 @@ const Login = () => {
         Email: '',
         Password: ''
     })
-    let EmailRef = useRef()
-    let PassRef = useRef()
+  
 
     let navigate = useNavigate()
 
@@ -22,14 +21,9 @@ const Login = () => {
             e.preventDefault()
 
 
-          
+      
 
-            if(PassRef.current.value===""){
-                PassRef.current.focus()
-            }
-            if(EmailRef.current.value===""){
-                EmailRef.current.focus()
-            }
+           
             
             let { data } = await axios.post(endpoint + '/login', login)
            
@@ -39,10 +33,11 @@ const Login = () => {
                
                 localStorage.setItem('AllUser', JSON.stringify(data.user))
                 localStorage.setItem('token', data.token)
+                console.log(data)
                 toast.success(data.message)
                 if (data.user.Role === "true") {
                     setTimeout(() => {
-                        navigate('/AdminDashboard')
+                        // navigate('/AdminDashboard')
                     }, 3000);
                 } else {
                     setTimeout(() => {
@@ -67,16 +62,16 @@ const Login = () => {
                     <form onSubmit={HandleLogin}>
                         <div className="row">
                             <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input ref={EmailRef} type="text" className="form-control" placeholder="Enter Your E-mail" value={login.Email} onChange={(e) => setlogin({ Email: e.target.value, Password: login.Password })} />
+                                <input  type="text" className="form-control" placeholder="Enter Your E-mail" value={login.Email} onChange={(e) => setlogin({ Email: e.target.value, Password: login.Password })} />
                             </div>
                             <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input ref={PassRef} type="text" className="form-control mt-4" placeholder="Enter Your Password" value={login.Password} onChange={(e) => setlogin({ Password: e.target.value, Email: login.Email })} />
+                                <input  type="text" className="form-control mt-4" placeholder="Enter Your Password" value={login.Password} onChange={(e) => setlogin({ Password: e.target.value, Email: login.Email })} />
                             </div>
                             <div className="col-1" style={{ width: "30%", margin: "0 auto" }}>
                                 <button type="text" className="form-control btn btn-primary mt-4"  >Submit</button>
                             </div>
                             <Link to='/Change' className="mt-3 " style={{ textDecoration: "none" }}>ForgetPassword</Link>
-                            <Link to='/signup' className="mt-2" style={{ textDecoration: "none" }}>Sign-Up</Link>
+                            <Link to='/register' className="mt-2" style={{ textDecoration: "none" }}>Sign-Up</Link>
                         </div>
                     </form>
                 </div>
@@ -95,9 +90,7 @@ export const Change = () => {
         Password: '',
         Confirm: '',
     })
-    let EmailRef=useRef()
-    let PassRef=useRef()
-    let ConfirmRef=useRef()
+ 
 
 
     
@@ -105,15 +98,7 @@ export const Change = () => {
     let navigate = useNavigate()
     const HandleLogin = async (e) => {
         e.preventDefault()
-        if(ConfirmRef.current.value===""){
-            ConfirmRef.current.focus()
-        }
-        if(PassRef.current.value===""){
-            PassRef.current.focus()
-        }
-        if(EmailRef.current.value===""){
-            EmailRef.current.focus()
-        }
+      
         let { data } = await axios.post(endpoint + '/change', change)
         console.log(data)
         if (data.status === "Success") {
@@ -135,13 +120,13 @@ export const Change = () => {
                     <form onSubmit={HandleLogin}>
                         <div className="row">
                             <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input type="text" ref={EmailRef} className="form-control" placeholder="Enter Your E-mail" value={change.Email} onChange={(e) => setchange({ Email: e.target.value, Password: change.Password, Confirm: change.Confirm })} />
+                                <input type="text"  className="form-control" placeholder="Enter Your E-mail" value={change.Email} onChange={(e) => setchange({ Email: e.target.value, Password: change.Password, Confirm: change.Confirm })} />
                             </div>
                             <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input type="text" ref={PassRef} className="form-control mt-4" placeholder="Enter Your Password" value={change.Password} onChange={(e) => setchange({ Password: e.target.value, Email: change.Email, Confirm: change.Confirm })} />
+                                <input type="text"  className="form-control mt-4" placeholder="Enter Your Password" value={change.Password} onChange={(e) => setchange({ Password: e.target.value, Email: change.Email, Confirm: change.Confirm })} />
                             </div>
                             <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                                <input type="text" ref={ConfirmRef} className="form-control mt-4" placeholder="Enter Your Confirm" value={change.Confirm} onChange={(e) => setchange({ Confirm: e.target.value, Email: change.Email, Password: change.Password })} />
+                                <input type="text"  className="form-control mt-4" placeholder="Enter Your Confirm" value={change.Confirm} onChange={(e) => setchange({ Confirm: e.target.value, Email: change.Email, Password: change.Password })} />
                             </div>
                             <div className="col-6" style={{ width: "30%", margin: "0 auto" }}>
                                 <button type="text" className="form-control btn btn-primary mt-4"  >Submit</button>
@@ -196,7 +181,7 @@ export const SingUp = () => {
     };
     return (
       <div
-        className="contaier d-flex align-items-center  text-center  justify-content-center  bg-info"
+        className="contaier d-flex align-items-center  text-center  justify-content-center  "
         style={{ height: "600px" }}
       >
         <div

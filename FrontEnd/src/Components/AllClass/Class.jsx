@@ -18,13 +18,16 @@ export const Class = () => {
 
   localStorage.setItem('class',JSON.stringify(ApiData))
 
+  console.log(ApiData)
+  
+
   useEffect(() => {
     SendRequest();
   }, []);
 
   return (
     <div className="container" style={{ marginTop: "10px", padding: "0 4%" }}>
-      <Link to={`/ClassCreate`} className="btn btn-info mx-2">
+      <Link to={`/ClassCreate`}  className="btn btn-info mx-2">
         Create +
       </Link>
       <table className="table  text-center">
@@ -52,7 +55,7 @@ export const Class = () => {
                 {
                   <div>
                     <Link
-                      to={`/ClassUpdate/${data._id}`}
+                      to={`/ClassUpdate/${JSON.stringify((data))}`}
                       className="btn btn-primary mx-2"
                     >
                       Edit
@@ -68,6 +71,8 @@ export const Class = () => {
                 }
               </td>
             </tr>
+
+         
             
 
          ))}

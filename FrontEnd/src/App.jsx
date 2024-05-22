@@ -50,14 +50,16 @@ export const App = () => {
         <Route path="/StudentUpdate/:id" element={<StudentUpdate />} />
         <Route path="/StudentDelete/:id" element={<StudentDelete />} />
 
+      
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="*"  element={<h1 style={{textAlign:"center",marginTop:"16%"}}>Not Found Page</h1>} />
 
         <Route path="/UserDashboard" element={<UserDashboard />} />
 
        
         <Route path="/ChangeProfile/:id" element={<ChangeProfile />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SingUp />} />
+        <Route path="/register" element={<SingUp />} />
         <Route path="/change" element={<Change />} />
         
 

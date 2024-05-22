@@ -33,7 +33,7 @@ const LoginValidation = (l) => {
 const StudentValidation = (SV) => {
     const studentvalidation = joi.object({
         Name: joi.string().required(),
-        Email: joi.string().required().email(),
+        // Email: joi.string().required().email(),
         Phone: joi.number().required(),
         Gender: joi.string().required(),
         Address: joi.string().required()
@@ -49,6 +49,20 @@ const EmailValidation = (Email) => {
 
     return Emailvalidation.validate(Email)
 }
+const NameValidation = (Name) => {
+    const Namevalidation = joi.object({
+        Name: joi.string().required()
+    })
+
+    return Namevalidation.validate(Name)
+}
+const ClassNameValidation = (ClassName) => {
+    const ClassNamevalidation = joi.object({
+        ClassName: joi.string().required()
+    })
+
+    return ClassNamevalidation.validate(ClassName)
+}
 
 const ChangeValidation = (Change) => {
     const studentvalidation = joi.object({
@@ -63,7 +77,7 @@ const ChangeValidation = (Change) => {
 
 const ClassValidation = (CV) => {
     const Classvalidation = joi.object({
-        Email: joi.string().required().email(),
+        // Email: joi.string().required().email(),
         ClassName: joi.string().required(),
         ClassStatus: joi.string().required(),
     })
@@ -72,4 +86,4 @@ const ClassValidation = (CV) => {
 }
 
 
-module.exports = { EmailValidation,ChangeValidation,ClassValidation, StudentValidation, UserValidation, ReceiptValidation, LoginValidation }
+module.exports = { ClassNameValidation,NameValidation,EmailValidation,ChangeValidation,ClassValidation, StudentValidation, UserValidation, ReceiptValidation, LoginValidation }

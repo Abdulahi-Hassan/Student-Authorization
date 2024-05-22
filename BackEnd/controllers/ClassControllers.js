@@ -1,6 +1,6 @@
 const ClassModel = require('../model/ClassModel')
 const PaymentModel = require('../model/PaymentModel')
-const { ClassValidation } = require('../validation/AllValidation')
+const { ClassValidation, EmailValidation } = require('../validation/AllValidation')
 const UserModel = require('../model/UserModel')
 require('dotenv').config()
 const GetClass = async (req, res) => {
@@ -14,7 +14,7 @@ const GetClass = async (req, res) => {
 }
 const GetClassID = async (req, res) => {
     try {
-        let {Class} = req.AllData && req.AllData;
+        let { Class } = req.AllData && req.AllData;
         let GetClassID = await ClassModel.findById(Class)
         res.send(GetClassID)
     } catch (error) {
@@ -23,12 +23,14 @@ const GetClassID = async (req, res) => {
 }
 const PostClass = async (req, res) => {
     try {
-        let { error } = ClassValidation(req.body)
-        if (error) return res.send(error.message)
         let { ClassStatus, ClassName, ClassDate, Email } = req.body
+        let { error } = ClassValidation({ ClassName, ClassStatus })
+        let { error: email } = EmailValidation({ Email })
+        if (email) return res.send(email.message)
         let Insert = new ClassModel({ ClassStatus, ClassName, ClassDate, Email })
         const UserData = await UserModel.findOne({ Email: Email })
         if (!UserData) return res.send("Userka lama helin")
+        if (error) return res.send(error.message)
         const UserExist = await ClassModel.findOne({ Email: UserData._id })
         if (UserExist) return res.send("User Already Exist")
         await ClassModel.findByIdAndUpdate(Insert._id, {
@@ -51,13 +53,13 @@ const PutClass = async (req, res) => {
         let { ClassStatus, ClassName, Email } = req.body
         let { id } = req.params;
 
-       
+
         // if (UserExist) return res.send("User Already Exist")
 
-     
+
         let Update = await ClassModel.findByIdAndUpdate(id, { ClassStatus, ClassName }, { new: true })
 
-    
+
         await UserModel.findByIdAndUpdate(Update.Email, {
             Email: Email
         }, { new: true })

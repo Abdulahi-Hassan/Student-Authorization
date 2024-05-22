@@ -17,7 +17,9 @@ export const Header = () => {
   return (
     <div className="container lii ">
       <header>
-        <Link className="logo">Student</Link>
+        <div>
+          <Link className="logo">Student</Link>
+        </div>
         <nav className="ms-5 ">
           <Link to="/" className="active">
             Home
@@ -35,13 +37,12 @@ export const Header = () => {
               <Link style={{ textDecoration: "none" }} to="/login">
                 SignIn
               </Link>
-              <Link style={{ textDecoration: "none" }} to="/signup">
-                SingUp
+              <Link style={{ textDecoration: "none" }} to="/register">
+                SignUp
               </Link>
             </>
           )}
-        </div>
-        <div className="signup">
+
           {token && (
             <>
               <Link onClick={HandleLoginOut} style={{ textDecoration: "none" }}>

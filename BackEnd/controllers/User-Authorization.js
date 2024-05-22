@@ -20,7 +20,6 @@ const PostUser = async (req, res) => {
         }
 
         let info = await Insert.save()
-        console.log(info)
         res.send({
             status: "Success",
             message: "Successfully Inserted Data User",

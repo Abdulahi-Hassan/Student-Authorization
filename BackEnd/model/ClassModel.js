@@ -13,7 +13,7 @@ const ClassSchema = new Schema({
         enum: ["Active", "Pending", "Blocked"]
     },
     Email:{
-        type:mongoose.Schema.Types.String,
+        type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'user'
     },

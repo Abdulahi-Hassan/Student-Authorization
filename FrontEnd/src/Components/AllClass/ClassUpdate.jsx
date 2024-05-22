@@ -3,23 +3,25 @@ import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../../pages/Login";
-export const ClassUpdate= () => {
-  let {id}=useParams()
+import { jwtDecode } from "jwt-decode";
+export const ClassUpdate = () => {
+  let { id } = useParams();
   let navigate = useNavigate();
+  let token = localStorage.getItem("token");
+  
   let ClassData=JSON.parse(localStorage.getItem('class')) && JSON.parse(localStorage.getItem('class'))
-  const ClassExist=ClassData.filter(data=>data._id===id)[0]
 
-  const {Email,ClassName,ClassStatus}=ClassExist
+  console.log(JSON.parse(id))
+  const { Email, ClassName, ClassStatus } = ClassData;
 
   const [User, setUser] = useState({
-    Email: Email.Email,
+    Email: 'Email',
     ClassName: ClassName,
     ClassStatus: ClassStatus,
   });
 
   const HandleLogin = async (e) => {
     e.preventDefault();
-
 
     let { data } = await axios.put(`${endpoint + "/class"}/${id}`, User);
     if (data.status === "Success") {
@@ -104,7 +106,6 @@ export const ClassUpdate= () => {
                   <option value="Active">Active</option>
                   <option value="Pending">Pending</option>
                   <option value="Blcoked">Blcoked</option>
-
                 </select>
               </div>
 

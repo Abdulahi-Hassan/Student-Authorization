@@ -3,7 +3,7 @@ const PaymentModel = require('../model/PaymentModel')
 
 const StudentModel = require('../model/StudentModel')
 const UserModel = require('../model/UserModel')
-const { StudentValidation } = require('../validation/AllValidation')
+const { StudentValidation, EmailValidation } = require('../validation/AllValidation')
 const GetStudent = async (req, res) => {
     try {
         let GetStudent = await StudentModel.find().populate('Email')
@@ -23,12 +23,15 @@ const GetStudentID = async (req, res) => {
 }
 const PostStudent = async (req, res) => {
     try {
-        let { error } = StudentValidation(req.body)
-        if (error) return res.send(error.message)
         let { Name, Gender, Address, Balance, AmountPaid, TotalAmount, Status, Phone, Email } = req.body
-        let Insert = new StudentModel({ Name, Phone, Gender, Address, Balance, TotalAmount, AmountPaid, Status })
+        let { error } = StudentValidation({Gender,Address,Name,Phone})
+        let { error: email } = EmailValidation({ Email })
+        if (email) return res.send(email.message)
         const UserData = await UserModel.findOne({ Email: Email })
         if (!UserData) return res.send("Userka lama helin")
+        if (error) return res.send(error.message)
+        let Insert = new StudentModel({Email, Name, Phone, Gender, Address, Balance, TotalAmount, AmountPaid, Status })
+    console.log(Insert)
         const UserExist = await StudentModel.findOne({ Email: UserData._id })
         if (UserExist) return res.send("User Already Exist")
         await StudentModel.findByIdAndUpdate(Insert._id, {

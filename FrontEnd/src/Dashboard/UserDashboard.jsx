@@ -81,30 +81,33 @@ export const UserDashboard = () => {
       <div className="col-3">
         <div className="user">
           <TiThMenu className="iconMenu" onClick={Handle} />
+
           <Link to={`/ChangeProfile/${1}`} className="bg">
             <img
               onClick={ImageEdit}
               className="image"
-              src={`http://localhost:3000/images/`}
+              src={`http://localhost:3000/images/` + user.Avator}
               alt=""
             />
           </Link>
-          {/* <Link
+          <Link
             to="/UserDashboard "
             className="bg-white text-danger "
             style={{ lineHeight: "45px" }}
           >
             {user && user.UserName}
-          </Link> */}
+          </Link>
           <Link
             to="/UserDashboard"
             onClick={SingleDashboard}
             className="active SingeUser text-light fs-5"
           >
             Dashboard
+            <TiThMenu className="allicons" />
           </Link>
           <Link to="/UserDashboard" onClick={HandleStudent}>
             Student
+            <TiThMenu className="allicons" />
           </Link>
           <Link to="/UserDashboard" onClick={HandleUser}>
             User
@@ -112,9 +115,9 @@ export const UserDashboard = () => {
           <Link to="/UserDashboard" onClick={HandleClass}>
             Class
           </Link>
-          {/* <Link to={`/ChangeProfile/${user._id}`} className="bsg">
+          <Link to={`/ChangeProfile/${user._id}`} className="bsg">
             Settings
-          </Link> */}
+          </Link>
         </div>
       </div>
       <div className="col singleuser">

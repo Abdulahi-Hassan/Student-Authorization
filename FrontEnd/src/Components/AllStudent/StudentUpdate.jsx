@@ -1,22 +1,18 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../../pages/Login";
-import { jwtDecode } from "jwt-decode";
+import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
 export const StudentUpdate = () => {
   let navigate = useNavigate();
   let { id } = useParams();
-  let token = localStorage.getItem("token");
-
-  const { Student: StudentData, User: UserData } = jwtDecode(token);
-  let StudentExist = StudentData.filter((data) => data._id === id)[0];
-  let UserExist = UserData.filter((data) => data._id === StudentExist.Email)[0];
-
+  const { StudentApi } = UseApiData();
+  let StudentExist = StudentApi.filter((data) => data._id === id)[0];
   const { Name, Phone, Gender, Email, Address } = StudentExist;
   const [User, setUser] = useState({
     Name: Name,
-    Email: UserExist.Email,
+    Email: Email.Email,
     Phone: Phone,
     Gender: Gender,
     Address: Address,

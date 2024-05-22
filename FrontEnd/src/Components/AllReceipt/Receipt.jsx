@@ -1,26 +1,14 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import toast, { Toaster } from "react-hot-toast";
-import {endpoint}  from '../../pages/Login'
+import {UseApiData} from '../../Dashboard/AllTable/api/AllProvider'
 export const Receipt = () => {
-    const [ApiData,setApiData]=useState([])
-  const SendRequest = async () => {
-   try {
-    let {data}  = await axios.get(endpoint+'/receipt/Allreceipt');
-    setApiData(data)
-   } catch (error) {
-    console.log(error.message)
-    
-   }
-  };
+  const { ReceiptApi } = UseApiData();
 
-  localStorage.setItem('receipt',JSON.stringify(ApiData))
 
-  useEffect(() => {
-    SendRequest();
-  }, []);
+   
+
+  
 
 
   return (
@@ -42,7 +30,7 @@ export const Receipt = () => {
           </tr>
         </thead>
         <tbody>
-         {ApiData && ApiData.map((data,index)=>(
+         {ReceiptApi && ReceiptApi.map((data,index)=>(
               <tr key={index}>
               <td>{data._id}</td>
               <td>{data.Name.Name}</td>

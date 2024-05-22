@@ -1,16 +1,10 @@
 import { Link } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 import "../index.css";
-
-// let User = JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user"));
-// let user = JSON.parse(localStorage.getItem("AllUser")) && JSON.parse(localStorage.getItem("AllUser"));
-
-// let student = JSON.parse(localStorage.getItem("student")) &&  JSON.parse(localStorage.getItem("student"));
-// let Class = JSON.parse(localStorage.getItem("class")) && JSON.parse(localStorage.getItem("class"));;
-// let receipt = JSON.parse(localStorage.getItem("receipt")) && JSON.parse(localStorage.getItem("receipt"));
-
+import { UseApiData } from "../Dashboard/AllTable/api/AllProvider";
 
 export const AdminDashboard = () => {
+  const { ClassApi, UserApi, StudentApi, ReceiptApi } = UseApiData();
   const Handle = () => {
     let user = document.querySelector(".user");
     user.classList.toggle("open");
@@ -45,24 +39,24 @@ export const AdminDashboard = () => {
           <Link to="/Receipt">Payment</Link>
         </div>
       </div>
-      {/* <div className="col counter mt-5">
+      <div className="col counter mt-5">
         <div className="count text-center text-white  ">
           Student
-          <div className="text-white fs-2">{student.length}</div>
+          <div className="text-white fs-2">{StudentApi.length}</div>
         </div>
         <div className="count text-center text-white  ">
           User
-          <div className="text-white fs-2">{User.length}</div>
+          <div className="text-white fs-2">{UserApi.length}</div>
         </div>
         <div className="count text-center text-white  ">
           Class
-          <div className="text-white fs-2">{Class.length}</div>
+          <div className="text-white fs-2">{ClassApi.length}</div>
         </div>
         <div className="count text-center text-white  ">
           Receipt
-          <div className="text-white fs-2">{receipt.length}</div>
+          <div className="text-white fs-2">{ReceiptApi.length}</div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -259,6 +259,9 @@ th {
   display: block;
 }
 
+/* .allicons{
+  display: none;
+} */
  @media screen and (max-width: 1024px) {
   header {
     width: 100%;
@@ -539,6 +542,7 @@ th {
     margin-bottom: 10px;
     border-radius: 10px;
   }
+ 
 
   .home-content,
   .about-content {
@@ -597,12 +601,14 @@ th {
     height: 550px;
     width: 320px;
     left: -270px;
+    
     a {
       margin-left: 250px;
       font-size: 16px;
       display: none;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
+   
     .image {
       margin-left: 20px;
     }
@@ -610,7 +616,14 @@ th {
       background-color: red;
     }
   }
+  
+  /* .allicons{
+    color:white;
+    position: relative;
+    left:30px;
+    fon
 
+   } */
   .iconMenu {
     display: block;
     font-size: 40px;

@@ -1,21 +1,20 @@
-import axios from "axios";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../../pages/Login";
-import { jwtDecode } from "jwt-decode";
+import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
+import axios from "axios";
 export const ClassUpdate = () => {
   let { id } = useParams();
   let navigate = useNavigate();
-  let token = localStorage.getItem("token");
-  
-  let ClassData=JSON.parse(localStorage.getItem('class')) && JSON.parse(localStorage.getItem('class'))
+  const { ClassApi } = UseApiData();
 
-  console.log(JSON.parse(id))
-  const { Email, ClassName, ClassStatus } = ClassData;
+  let ClassExist = ClassApi.filter((data) => data._id === id)[0];
+
+  const { Email, ClassName, ClassStatus } = ClassExist;
 
   const [User, setUser] = useState({
-    Email: 'Email',
+    Email: Email.Email,
     ClassName: ClassName,
     ClassStatus: ClassStatus,
   });

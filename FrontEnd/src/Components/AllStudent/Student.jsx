@@ -4,25 +4,9 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import toast, { Toaster } from "react-hot-toast";
 import {endpoint}  from '../../pages/Login'
+import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
 export const Student = () => {
-    const [ApiData,setApiData]=useState([])
-  const SendRequest = async () => {
-   try {
-    let {data}  = await axios.get(endpoint+'/student/Allstudent');
-    setApiData(data)
-   } catch (error) {
-    console.log(error.message)
-    
-   }
-  };
-
-  localStorage.setItem('student',JSON.stringify(ApiData))
-
-  useEffect(() => {
-    SendRequest();
-  }, []);
-
-  
+  const { StudentApi } = UseApiData();
 
   return (
     <div className="container" style={{ marginTop: "10px", padding: "0 4%" }}>
@@ -43,7 +27,7 @@ export const Student = () => {
           </tr>
         </thead>
         <tbody>
-         {ApiData && ApiData.map((data,index)=>(
+         {StudentApi && StudentApi.map((data,index)=>(
               <tr key={index}>
               <td>{data._id}</td>
               <td>{data.Name}</td>

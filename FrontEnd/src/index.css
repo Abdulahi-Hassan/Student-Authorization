@@ -586,6 +586,7 @@ th {
     a {
       font-size: 18px;
       line-height: 80px;
+      display: block;
     }
     .image {
       margin-left: 20px;
@@ -594,11 +595,12 @@ th {
   .user {
     margin-top: 53px;
     height: 550px;
-    width: 390px;
+    width: 320px;
     left: -270px;
     a {
       margin-left: 250px;
       font-size: 16px;
+      display: none;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
     .image {

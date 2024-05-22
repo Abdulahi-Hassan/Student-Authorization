@@ -613,6 +613,7 @@ th {
 
   .iconMenu {
     display: block;
+    font-size: 40px;
   }
   .home {
     margin-top: 52px;

@@ -111,9 +111,9 @@ export const Change = () => {
         }
     }
     return (
-        <div className="contaier d-flex align-items-center  text-center  justify-content-center   login" style={{ height: "600px" }}>
+        <div className="contaier d-flex align-items-center  text-center  justify-content-center  bg-dark login" style={{ height: "600px" }}>
             <div className="card mar" style={{ width: "450px", borderRadius: "12px", height: "340px" }}>
-                <div className="card-title " style={{ fontSize: "38px", fontWeight: "bold" }}>Chnage
+                <div className="card-title " style={{ fontSize: "38px", fontWeight: "bold" }}>Change
                     <Link to='/login' className=" btn btn-danger mt-2 mx-2" style={{ float: 'right' }} >X</Link>
                 </div>
                 <div className="card-body ">
@@ -181,9 +181,7 @@ export const SingUp = () => {
     };
     return (
       <div
-        className="contaier d-flex align-items-center  text-center  justify-content-center  "
-        style={{ height: "600px" }}
-      >
+      className="contaier d-flex align-items-center  text-center  justify-content-center  bg-dark login" style={{ height: "600px" }}>
         <div
           className="card"
           style={{ width: "450px", borderRadius: "12px", height: "400px" }}

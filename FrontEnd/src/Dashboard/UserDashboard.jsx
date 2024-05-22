@@ -85,17 +85,17 @@ export const UserDashboard = () => {
             <img
               onClick={ImageEdit}
               className="image"
-              src={`http://localhost:3000/images/` + user.Avator}
+              src={`http://localhost:3000/images/`}
               alt=""
             />
           </Link>
-          <Link
+          {/* <Link
             to="/UserDashboard "
             className="bg-white text-danger "
             style={{ lineHeight: "45px" }}
           >
             {user && user.UserName}
-          </Link>
+          </Link> */}
           <Link
             to="/UserDashboard"
             onClick={SingleDashboard}
@@ -112,9 +112,9 @@ export const UserDashboard = () => {
           <Link to="/UserDashboard" onClick={HandleClass}>
             Class
           </Link>
-          <Link to={`/ChangeProfile/${user._id}`} className="bsg">
+          {/* <Link to={`/ChangeProfile/${user._id}`} className="bsg">
             Settings
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="col singleuser">

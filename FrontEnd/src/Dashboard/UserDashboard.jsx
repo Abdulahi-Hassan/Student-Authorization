@@ -81,7 +81,7 @@ export const UserDashboard = () => {
       <div className="col-3">
         <div className="user">
           <TiThMenu className="iconMenu" onClick={Handle} />
-          <Link to={`/ChangeProfile/${user._id}`} className="bg">
+          <Link to={`/ChangeProfile/${1}`} className="bg">
             <img
               onClick={ImageEdit}
               className="image"

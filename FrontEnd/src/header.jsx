@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
-import cookie from 'universal-cookie'
+import cookie from "universal-cookie";
 export const Header = () => {
-  let Cookie=new cookie()
-  let {user}=Cookie.get('user')
+  let Cookie = new cookie();
+  // let { user } = Cookie.get("user");
   const Handle = () => {
     let nav = document.querySelector("nav");
     nav.classList.toggle("menu");
@@ -28,9 +28,9 @@ export const Header = () => {
           </Link>
           <Link to="/about">About</Link>
           <Link to="/services">Services</Link>
-          {user && user.Role === "false" && (
+          {/* {user && user.Role === "false" && (
             <Link to="/UserDashboard">User</Link>
-          )}
+          )} */}
           <Link to="/contuct">Contuct</Link>
         </nav>
         <div className="signup">

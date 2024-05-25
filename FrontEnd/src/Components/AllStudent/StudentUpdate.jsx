@@ -3,12 +3,13 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../../pages/Login";
-import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
+import cookie from "universal-cookie";
 export const StudentUpdate = () => {
   let navigate = useNavigate();
+  let Cookie = new cookie();
   let { id } = useParams();
-  const { StudentApi } = UseApiData();
-  let StudentExist = StudentApi.filter((data) => data._id === id)[0];
+  let StudentData = Cookie.get("StudentData");
+  let StudentExist = StudentData.filter((data) => data._id === id)[0];
   const { Name, Phone, Gender, Email, Address } = StudentExist;
   const [User, setUser] = useState({
     Name: Name,

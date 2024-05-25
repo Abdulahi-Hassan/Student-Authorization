@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 import "../index.css";
-import { UseApiData } from "../Dashboard/AllTable/api/AllProvider";
 
 export const AdminDashboard = () => {
   const { ClassApi, UserApi, StudentApi, ReceiptApi } = UseApiData();

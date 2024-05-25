@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
-import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
+import axios from "axios";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import { endpoint } from "../../pages/Login";
+import cookie from "universal-cookie";
 export const User = () => {
-  const { UserApi } = UseApiData();
+  let Cookie = new cookie();
+  let [UserApi, setUserApi] = useState([]);
+  useEffect(() => {
+    let SendRequest = async () => {
+      let { data: UserData } = await axios.get(endpoint + "/user/Alluser");
+      setUserApi(UserData);
+    };
+    SendRequest();
+  }, []);
+  Cookie.set("UserData", UserApi)
+
   return (
     <div className="container" style={{ marginTop: "10px", padding: "0 4%" }}>
       <Link to={`/UserCreate`} className="btn btn-info mx-2">
@@ -30,7 +43,6 @@ export const User = () => {
                 <td>{data.Role}</td>
                 <td>{data.Status}</td>
                 <td>{moment(data.Date).format("LL")}</td>
-
                 <td>
                   {
                     <div>

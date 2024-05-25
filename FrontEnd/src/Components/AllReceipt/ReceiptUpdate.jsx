@@ -3,19 +3,22 @@ import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../../pages/Login";
+import cookie from 'universal-cookie'
 export const ReceiptUpdate = () => {
+  let Cookie =new cookie()
   let { id } = useParams();
   let navigate = useNavigate();
-  let ReceiptData = JSON.parse(localStorage.getItem("receipt")) && JSON.parse(localStorage.getItem("receipt"));
-  let ReceiptExist = ReceiptData.filter((data) => data.Name._id===id)[0];
-  const {Name,Email,ClassName,ReceiptAmount}=ReceiptExist
+  let ReceiptData=Cookie.getAll()
+  // let ReceiptExist = ReceiptData.filter((data) => data.Name._id===id)[0];
+  console.log(ReceiptData)
+  // const {Name,Email,ClassName,ReceiptAmount}=ReceiptExist
   
   
   const [User, setUser] = useState({
-    Name: Name.Name,
-    Email: Email.Email,
-    ClassName:ClassName.ClassName,
-    ReceiptAmount: ReceiptAmount,
+    Name: 'Name.Name',
+    Email: 'Email.Email',
+    ClassName:'ClassName.ClassName',
+    ReceiptAmount: 'ReceiptAmount',
   });
 
   const HandleLogin = async (e) => {

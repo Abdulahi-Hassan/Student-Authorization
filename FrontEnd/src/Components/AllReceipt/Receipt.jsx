@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
 import moment from "moment";
-import toast, { Toaster } from "react-hot-toast";
-import {UseApiData} from '../../Dashboard/AllTable/api/AllProvider'
+import cookie from "universal-cookie";
+import { endpoint } from "../../pages/Login";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export const Receipt = () => {
-  const { ReceiptApi } = UseApiData();
+  let [ReceiptApi, setReceiptApi] = useState([]);
+  let Cookie = new cookie();
+  useEffect(() => {
+    let SendRequest = async () => {
+      let { data: ReceiptData } = await axios.get(
+        endpoint + "/receipt/Allreceipt"
+      );
 
-
-   
-
-  
-
+      setReceiptApi(ReceiptData);
+    };
+    SendRequest();
+  }, []);
+  Cookie.set("ReceiptData", ReceiptApi);
 
   return (
     <div className="container" style={{ marginTop: "10px", padding: "0 4%" }}>
@@ -30,39 +38,39 @@ export const Receipt = () => {
           </tr>
         </thead>
         <tbody>
-         {ReceiptApi && ReceiptApi.map((data,index)=>(
+          {ReceiptApi &&
+            ReceiptApi.map((data, index) => (
               <tr key={index}>
-              <td>{data._id}</td>
-              <td>{data.Name.Name}</td>
-              <td>{data.Email.Email}</td>
-              <td>{data.ClassName.ClassName}</td>
-              <td>{data.ReceiptAmount}</td>
-              <td>{moment(data.Date).format("LL")}</td>
+                <td>{data._id}</td>
+                <td>{data.Name.Name}</td>
+                <td>{data.Email.Email}</td>
+                <td>{data.ClassName.ClassName}</td>
+                <td>{data.ReceiptAmount}</td>
+                <td>{moment(data.Date).format("LL")}</td>
 
-              <td>
-                {
-                  <div>
-                    <Link
-                      to={`/ReceiptUpdate/${data.Name._id}`}
-                      className="btn btn-primary mx-2"
-                    >
-                      Edit
-                    </Link>
-                    |
-                    <Link
-                      to={`/ReceiptDelete/${data.Name._id}`}
-                      className="btn btn-danger mx-2"
-                    >
-                      Delete
-                    </Link>
-                  </div>
-                }
-              </td>
-            </tr>
-         ))}
+                <td>
+                  {
+                    <div>
+                      <Link
+                        to={`/ReceiptUpdate/${data.Name._id}`}
+                        className="btn btn-primary mx-2"
+                      >
+                        Edit
+                      </Link>
+                      |
+                      <Link
+                        to={`/ReceiptDelete/${data.Name._id}`}
+                        className="btn btn-danger mx-2"
+                      >
+                        Delete
+                      </Link>
+                    </div>
+                  }
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
-      <Toaster />
     </div>
   );
 };

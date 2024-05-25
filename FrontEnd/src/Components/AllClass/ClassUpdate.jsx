@@ -2,14 +2,14 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../../pages/Login";
-import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
+import cookie from 'universal-cookie'
 import axios from "axios";
 export const ClassUpdate = () => {
+  let Cookie=new cookie()
   let { id } = useParams();
   let navigate = useNavigate();
-  const { ClassApi } = UseApiData();
-
-  let ClassExist = ClassApi.filter((data) => data._id === id)[0];
+  let ClassData=Cookie.get('ClassData')
+  let ClassExist = ClassData.filter((data) => data._id === id)[0];
 
   const { Email, ClassName, ClassStatus } = ClassExist;
 

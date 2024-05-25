@@ -6,12 +6,11 @@ import { SingleDash } from "./SingleDashboard";
 import { ClassTable } from "./AllTable/ClassTable";
 import { StudentTable } from "./AllTable/StudentTable";
 import { UserTable } from "./AllTable/UserTable";
+import cookie from 'universal-cookie'
 export const UserDashboard = () => {
-  let user =
-    JSON.parse(localStorage.getItem("AllUser")) &&
-    JSON.parse(localStorage.getItem("AllUser"));
-  let navigate = useNavigate();
-
+ let navigate=useNavigate()
+ let Cookie=new cookie()
+ let {user}=Cookie.get('user')
   useEffect(() => {
     navigate("/UserDashboard");
   }, [navigate]);
@@ -19,7 +18,6 @@ export const UserDashboard = () => {
     let user = document.querySelector(".user");
     user.classList.toggle("open");
   };
-
   const SingleDashboard = () => {
     const singleuser = document.querySelector(".singleuser");
     singleuser.classList.toggle("open");
@@ -34,17 +32,15 @@ export const UserDashboard = () => {
   };
   const ImageEdit = () => {
     let singleuserimage = document.querySelector(".singleuserimage");
-    console.log(singleuserimage);
+    console.log(singleuserimage)
     singleuserimage.classList.toggle("open");
     const singleuser = document.querySelector(".singleuser");
     singleuser.classList.remove("open");
-    studenttable.classList.remove("open");
     let usertable = document.querySelector(".usertable");
     usertable.classList.remove("open");
     let classtable = document.querySelector(".classtable");
     classtable.classList.remove("open");
   };
-
   const HandleStudent = () => {
     let studenttable = document.querySelector(".studenttable");
     studenttable.classList.toggle("open");
@@ -82,7 +78,7 @@ export const UserDashboard = () => {
         <div className="user">
           <TiThMenu className="iconMenu" onClick={Handle} />
 
-          <Link to={`/ChangeProfile/${1}`} className="bg">
+          <Link to={`/ChangeProfile/${user._id}`} className="bg">
             <img
               onClick={ImageEdit}
               className="image"
@@ -103,11 +99,9 @@ export const UserDashboard = () => {
             className="active SingeUser text-light fs-5"
           >
             Dashboard
-            <TiThMenu className="allicons" />
           </Link>
           <Link to="/UserDashboard" onClick={HandleStudent}>
             Student
-            <TiThMenu className="allicons" />
           </Link>
           <Link to="/UserDashboard" onClick={HandleUser}>
             User
@@ -124,7 +118,6 @@ export const UserDashboard = () => {
         <SingleDash />
       </div>
       <div className="col singleuserimage">
-        {/* <ReceiptTable /> */}
         receipt
       </div>
       <div className="col classtable">

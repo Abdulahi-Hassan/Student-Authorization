@@ -2,29 +2,28 @@ import { useRef, useState } from "react";
 
 import axios from "axios";
 export const endpoint = "http://localhost:3000/api";
-
+import cookie from 'universal-cookie'
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
+  let Cookie =new cookie()
   const [login, setlogin] = useState({
     Email: "",
     Password: "",
   });
-
   let navigate = useNavigate();
 
   const HandleLogin = async (e) => {
     try {
       e.preventDefault();
-
       let { data } = await axios.post(endpoint + "/login", login);
-
       if (data.status === "Success") {
-        localStorage.setItem("AllUser", JSON.stringify(data.user));
+        localStorage.setItem('token',data.token)
+        Cookie.set('user',data)
         toast.success(data.message);
         if (data.user.Role === "true") {
           setTimeout(() => {
-            navigate('/AdminDashboard')
+            navigate("/AdminDashboard");
           }, 3000);
         } else {
           setTimeout(() => {

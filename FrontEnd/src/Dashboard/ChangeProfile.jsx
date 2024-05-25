@@ -3,30 +3,38 @@ import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../pages/Login";
+import cookie from "universal-cookie";
 export const ChangeProfile = () => {
   let { id } = useParams();
   let navigate = useNavigate();
+  let Cookie = new cookie();
 
-  let UserData = JSON.parse(localStorage.getItem("AllUser")) && JSON.parse(localStorage.getItem("AllUser"));
+  const { user } = Cookie.get("user");
+
+  let UserData =
+    JSON.parse(localStorage.getItem("AllUser")) &&
+    JSON.parse(localStorage.getItem("AllUser"));
 
   let ImageRef = useRef(null);
 
   const [User, setUser] = useState({
-    UserName: UserData.UserName,
-    Email: UserData.Email,
-    Profile: UserData.Avator,
+    UserName: user.UserName,
+    Email: user.Email,
+    Profile: "",
   });
-  
 
   const HandleLogin = async (e) => {
     e.preventDefault();
-    const Formdata=new FormData()
+    const Formdata = new FormData();
 
-    Formdata.append("UserName",User.UserName)
-    Formdata.append("Email",User.Email)
-    Formdata.append("Profile",User.Profile)
-    let { data } = await axios.put(`${endpoint + "/user/Profile"}/${id}`, Formdata);
-   
+    Formdata.append("UserName", User.UserName);
+    Formdata.append("Email", User.Email);
+    Formdata.append("Profile", User.Profile);
+    let { data } = await axios.put(
+      `${endpoint + "/user/Profile"}/${id}`,
+      Formdata
+    );
+
     if (data.status === "Success") {
       toast.success(data.message);
       localStorage.clear();
@@ -39,18 +47,14 @@ export const ChangeProfile = () => {
   };
   return (
     <div
-      className="contaier d-flex align-items-center  text-center  justify-content-center  bg-info"
+      className="contaier d-flex align-items-center  text-center  justify-content-center login  bg-info"
       style={{ height: "600px" }}
     >
       <div
         className="card"
-        style={{ width: "450px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "450px", borderRadius: "12px", height: "430px" }}
       >
-        <div
-          className="card-title   "
-          style={{ fontSize: "38px", fontWeight: "600" }}
-        >
-          <strong className="ms-5">Change Profile</strong>
+        <div>
           <Link
             to="/UserDashboard"
             className=" btn btn-danger mt-2 mx-2"
@@ -58,6 +62,17 @@ export const ChangeProfile = () => {
           >
             X
           </Link>
+        </div>
+        <div>
+          {User.Profile ? (
+            <img className="image" src={URL.createObjectURL(User.Profile)} />
+          ) : (
+            <img
+              className="image"
+              src={`http://localhost:3000/images/` + user.Avator}
+              alt=""
+            />
+          )}
         </div>
         <div className="card-body ">
           <form onSubmit={HandleLogin}>

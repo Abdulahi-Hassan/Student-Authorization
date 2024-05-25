@@ -2,9 +2,23 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import toast, { Toaster } from "react-hot-toast";
-import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
+import cookie from 'universal-cookie'
+import axios from "axios";
+import { endpoint } from "../../pages/Login";
 export const Class = () => {
-  const { ClassApi } = UseApiData();
+  let [ClassApi, setClassApi] = useState([]);
+  let Cookie=new cookie()
+  useEffect(() => {
+    let SendRequest = async () => {
+      let { data: ClassData } = await axios.get(
+        endpoint + "/class/Allclass"
+      );
+      setClassApi(ClassData);
+    };
+    SendRequest();
+  }, []);
+
+  Cookie.set("ClassData",ClassApi)
   return (
     <div className="container" style={{ marginTop: "10px", padding: "0 4%" }}>
       <Link to={`/ClassCreate`} className="btn btn-info mx-2">

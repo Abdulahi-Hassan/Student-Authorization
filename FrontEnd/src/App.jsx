@@ -25,10 +25,12 @@ import { StudentCreate } from "./Components/AllStudent/StudentCreate";
 import { StudentUpdate } from "./Components/AllStudent/StudentUpdate";
 import { StudentDelete } from "./Components/AllStudent/StudentDelete";
 import { ChangeProfile } from "./Dashboard/ChangeProfile";
+import { useState } from "react";
 export const App = () => {
+  const [loginuser, setloginuser] = useState("");
   return (
     <div>
-      <Header />
+      <Header login={loginuser} />
       <Routes>
         <Route path="/User" element={<User />} />
         <Route path="/UserCreate" element={<UserCreate />} />
@@ -54,11 +56,11 @@ export const App = () => {
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="*"  element={<h1 style={{textAlign:"center",marginTop:"16%"}}>Not Found Page</h1>} />
 
-        <Route path="/UserDashboard" element={<UserDashboard />} />
+        <Route path="/UserDashboard" element={<UserDashboard login={loginuser} />} />
 
        
         <Route path="/ChangeProfile/:id" element={<ChangeProfile />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login  setloginuser={setloginuser} />} />
         <Route path="/register" element={<SingUp />} />
         <Route path="/change" element={<Change />} />
         

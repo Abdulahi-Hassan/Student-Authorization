@@ -3,16 +3,13 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { endpoint } from "../../pages/Login";
-import { UseApiData } from "../../Dashboard/AllTable/api/AllProvider";
+import cookie from "universal-cookie";
 export const UserUpdate = () => {
   let { id } = useParams();
   let navigate = useNavigate();
-  const { UserApi } = UseApiData();
-
-  
-  let UserExist=UserApi.filter(data=>data._id===id)[0]
- 
-
+  let Cookie = new cookie();
+  const UserData = Cookie.get("UserData");
+  let UserExist = UserData.filter((data) => data._id === id)[0];
   const { Role, UserName, Email, Status } = UserExist;
 
   const [User, setUser] = useState({

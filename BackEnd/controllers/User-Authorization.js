@@ -46,9 +46,9 @@ const Login = async (req, res) => {
         if (error) return res.send(error.message)
         let checkpass = await bcrypt.compare(req.body.Password, UserData.Password)
         if (!checkpass) return res.send('Invalid Credentails')
-        const StudentData = await StudentModel.findOne({ Email: UserData._id })
-        const PaymentData = await PaymentModel.findOne({ Email: UserData._id })
-        const ClassData = await ClassModel.findOne({ Email: UserData._id })
+        const StudentData = await StudentModel.findOne({ Email: UserData._id }).populate("Email", "-Password")
+        const PaymentData = await PaymentModel.findOne({ Email: UserData._id }).populate("Email")
+        const ClassData = await ClassModel.findOne({ Email: UserData._id }).populate("Email")
 
         const { Password, ...Info } = UserData._doc
         let token = jwt.sign({
@@ -57,6 +57,7 @@ const Login = async (req, res) => {
             Payment: PaymentData && PaymentData._id,
             Class: ClassData && ClassData._id
         }, process.env.token)
+        console.log(StudentData, ClassData, PaymentData)
         res.cookie("token", token, {
             path: '/',
             httpOnly: true,

@@ -10,7 +10,7 @@ import { UserUpdate } from "./Components/AllUser/UserUpdate";
 import { Header } from "./header";
 import { AdminDashboard } from "./Dashboard/AdminDashboard";
 import { UserDashboard } from "./Dashboard/UserDashboard";
-import Login, { SingUp ,Change} from "./pages/Login";
+import Login, { SingUp, Change } from "./pages/Login";
 import { UserDelete } from "./Components/AllUser/UserDelete";
 import { Receipt } from "./Components/AllReceipt/Receipt";
 import { ReceiptCreate } from "./Components/AllReceipt/ReceiptCreate";
@@ -28,9 +28,11 @@ import { ChangeProfile } from "./Dashboard/ChangeProfile";
 import { useState } from "react";
 export const App = () => {
   const [loginuser, setloginuser] = useState("");
+  console.log("welcome");
   return (
     <div>
       <Header login={loginuser} />
+
       <Routes>
         <Route path="/User" element={<User />} />
         <Route path="/UserCreate" element={<UserCreate />} />
@@ -52,18 +54,25 @@ export const App = () => {
         <Route path="/StudentUpdate/:id" element={<StudentUpdate />} />
         <Route path="/StudentDelete/:id" element={<StudentDelete />} />
 
-      
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
-        <Route path="*"  element={<h1 style={{textAlign:"center",marginTop:"16%"}}>Not Found Page</h1>} />
+        <Route
+          path="*"
+          element={
+            <h1 style={{ textAlign: "center", marginTop: "16%" }}>
+              Not Found Page
+            </h1>
+          }
+        />
 
-        <Route path="/UserDashboard" element={<UserDashboard login={loginuser} />} />
+        <Route
+          path="/UserDashboard"
+          element={<UserDashboard login={loginuser} />}
+        />
 
-       
         <Route path="/ChangeProfile/:id" element={<ChangeProfile />} />
-        <Route path="/login" element={<Login  setloginuser={setloginuser} />} />
+        <Route path="/login" element={<Login setloginuser={setloginuser} />} />
         <Route path="/register" element={<SingUp />} />
         <Route path="/change" element={<Change />} />
-        
 
         {/* <Route path="/Profile/:id" element={<UpdateUserProfile />} />
                 

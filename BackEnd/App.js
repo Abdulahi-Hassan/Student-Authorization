@@ -10,12 +10,17 @@ const cors = require('cors')
 ConnectionDb()
 server.use(express.static('public'))
 server.use(express.json())
-server.use(cors({credentials:true,origin:'https://main--authorizations.netlify.app'}))
+server.use(cors())
 server.use('/api', require('./routes/Login'))
 server.use('/api', require('./routes/PaymentRoutes'))
 server.use('/api', require('./routes/UserRoutes'))
 server.use('/api', require('./routes/StudentRoutes'))
 server.use('/api', require('./routes/ClassRoutes'))
+const path = require('path')
 
+server.use(express.static(path.join(__dirname, "/frontend/dist")))
+server.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
+})
 
 server.listen(process.env.port, () => console.log(process.env.Runningconnect))

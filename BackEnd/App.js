@@ -17,10 +17,8 @@ server.use('/api', require('./routes/UserRoutes'))
 server.use('/api', require('./routes/StudentRoutes'))
 server.use('/api', require('./routes/ClassRoutes'))
 const path = require('path')
-
-server.use(express.static(path.join(__dirname, "/frontend/dist")))
-server.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
+server.use(express.static(path.join(__dirname, "/FrontEnd/dist")))
+server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "FrontEnd", "dist", "index.html"))
 })
-
 server.listen(process.env.port, () => console.log(process.env.Runningconnect))

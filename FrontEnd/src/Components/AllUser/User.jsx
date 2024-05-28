@@ -1,20 +1,7 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
-import moment from "moment";
-import { useEffect, useState } from "react";
-import { endpoint } from "../../pages/Login";
-import cookie from "universal-cookie";
+
 export const User = () => {
-  let Cookie = new cookie();
-  let [UserApi, setUserApi] = useState([]);
-  useEffect(() => {
-    let SendRequest = async () => {
-      let { data: UserData } = await axios.get(endpoint + "/user/Alluser");
-      setUserApi(UserData);
-    };
-    SendRequest();
-  }, []);
-  Cookie.set("UserData", UserApi)
+
 
   return (
     <div className="container" style={{ marginTop: "10px", padding: "0 4%" }}>
@@ -34,7 +21,7 @@ export const User = () => {
           </tr>
         </thead>
         <tbody>
-          {UserApi &&
+          {/* {UserApi &&
             UserApi.map((data, index) => (
               <tr key={index}>
                 <td>{data._id}</td>
@@ -63,7 +50,7 @@ export const User = () => {
                   }
                 </td>
               </tr>
-            ))}
+            ))} */}
         </tbody>
       </table>
     </div>

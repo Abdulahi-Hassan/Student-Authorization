@@ -3,8 +3,8 @@ const multer=require('multer')
 const path=require('path')
 require('dotenv').config()
 let jwt = require('jsonwebtoken')
-exports.ConnectionDb = async () => {
-    await mongoose.connect(process.env.mongodb).then(() => console.log(process.env.mongodbconnect))
+exports.ConnectionDb =  () => {
+     mongoose.connect(process.env.mongodb).then(() => console.log(process.env.mongodbconnect))
 }
 const storage=multer.diskStorage({
     destination:(req,file,cb)=>{

@@ -1,12 +1,11 @@
 import { createRoot } from "react-dom/client";
-import { App } from "./App";
-import { BrowserRouter } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
+import App from "./App";
+import {BrowserRouter} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 const container = document.querySelector("#root");
 const root = createRoot(container);
 root.render(
-  <BrowserRouter>
+    <BrowserRouter>
     <App />
-    
-  </BrowserRouter>
+    </BrowserRouter>
 );

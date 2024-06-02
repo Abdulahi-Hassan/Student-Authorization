@@ -1,7 +1,7 @@
+const bcrypt = require('bcryptjs')
 const UserModel = require('../model/UserModel')
 const StudentModel = require('../model/StudentModel')
 const ClassModel = require('../model/ClassModel')
-const bcrypt = require('bcrypt')
 const PaymentModel = require('../model/PaymentModel')
 
 

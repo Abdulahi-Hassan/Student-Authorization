@@ -1,5 +1,5 @@
 const { UserValidation, LoginValidation, EmailValidation, ChangeValidation } = require('../validation/AllValidation')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 let jwt = require('jsonwebtoken')
 const PaymentModel = require('../model/PaymentModel')
 const UserModel = require('../model/UserModel')

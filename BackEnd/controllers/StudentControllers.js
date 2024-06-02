@@ -3,6 +3,7 @@ const PaymentModel = require('../model/PaymentModel')
 
 const StudentModel = require('../model/StudentModel')
 const UserModel = require('../model/UserModel')
+const GenerateToken = require('../token/Generate-token')
 const { StudentValidation, EmailValidation } = require('../validation/AllValidation')
 const GetStudent = async (req, res) => {
     try {
@@ -14,24 +15,25 @@ const GetStudent = async (req, res) => {
 }
 const GetStudentID = async (req, res) => {
     try {
-        const { Student } = req.AllData && req.AllData
-        let GetStudentID = await StudentModel.findById(Student)
+        const { id } = req.user
+        let Email = await StudentModel.findOne({Email:id})
+        let GetStudentID = await StudentModel.findById({_id:Email._id})
         res.send(GetStudentID)
+
     } catch (error) {
         res.send(error.message)
     }
 }
 const PostStudent = async (req, res) => {
     try {
-        let { Name, Gender, Address, Balance, AmountPaid, TotalAmount, Status, Phone, Email } = req.body
-        let { error } = StudentValidation({Gender,Address,Name,Phone})
+        let { Gender, Address, Balance, AmountPaid, TotalAmount, Status, Phone, Email } = req.body
+        let { error } = StudentValidation({Gender,Address,Phone})
         let { error: email } = EmailValidation({ Email })
         if (email) return res.send(email.message)
         const UserData = await UserModel.findOne({ Email: Email })
-        if (!UserData) return res.send("Userka lama helin")
+        if (!UserData) return res.send("User not found")
         if (error) return res.send(error.message)
-        let Insert = new StudentModel({Email, Name, Phone, Gender, Address, Balance, TotalAmount, AmountPaid, Status })
-    console.log(Insert)
+        let Insert = new StudentModel({Email,Phone, Gender, Address, Balance, TotalAmount, AmountPaid, Status })
         const UserExist = await StudentModel.findOne({ Email: UserData._id })
         if (UserExist) return res.send("User Already Exist")
         await StudentModel.findByIdAndUpdate(Insert._id, {
@@ -78,7 +80,7 @@ const DeleteStudent = async (req, res) => {
         if (!Remove) return res.send('')
         res.send({
             status: "Success",
-            message: "Successfully Update Data Student",
+            message: "Successfully Delete Data Student",
             info: Remove
         })
     } catch (error) {

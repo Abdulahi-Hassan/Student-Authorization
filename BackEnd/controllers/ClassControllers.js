@@ -14,8 +14,9 @@ const GetClass = async (req, res) => {
 }
 const GetClassID = async (req, res) => {
     try {
-        let { Class } = req.AllData && req.AllData;
-        let GetClassID = await ClassModel.findById(Class)
+        let {id}=req.user
+        let Email = await ClassModel.findOne({Email:id})
+        let GetClassID = await ClassModel.findById({_id:Email._id})
         res.send(GetClassID)
     } catch (error) {
         res.send(error.message)
@@ -29,7 +30,7 @@ const PostClass = async (req, res) => {
         if (email) return res.send(email.message)
         let Insert = new ClassModel({ ClassStatus, ClassName, ClassDate, Email })
         const UserData = await UserModel.findOne({ Email: Email })
-        if (!UserData) return res.send("Userka lama helin")
+        if (!UserData) return res.send("User not found")
         if (error) return res.send(error.message)
         const UserExist = await ClassModel.findOne({ Email: UserData._id })
         if (UserExist) return res.send("User Already Exist")

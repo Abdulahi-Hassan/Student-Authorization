@@ -1,5 +1,5 @@
 import {About} from '../pages/About'
-import {Services} from '../pages/Services'
+import {Services} from '../Services/Services'
 import imagehome from '../Images/left-image-C8IKqx-W.png'
 import { Contuct } from './Contuct'
 export const Home=()=>{

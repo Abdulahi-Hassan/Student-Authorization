@@ -1,29 +1,17 @@
-import axios from "axios";
-import { useRef, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { endpoint } from "../../pages/Login";
-export const ClassCreate = () => {
-  let navigate = useNavigate();
-  const [User, setUser] = useState({
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import UseStudent from "../../../Api/Student/UseStudent";
+export const SignUpStudent = () => {
+  const [student, setstudent] = useState({
     Email: "",
-    ClassName: "",
-    ClassStatus: "",
+    Phone: "",
+    Gender: "",
+    Address: "",
   });
-
-  const HandleLogin = async (e) => {
+  const { createstudent } = UseStudent();
+  const studentLogin = async (e) => {
     e.preventDefault();
-
-
-    let { data } = await axios.post(endpoint + "/class/signup", User);
-    if (data.status === "Success") {
-      toast.success(data.message);
-      setTimeout(() => {
-        navigate("/class");
-      }, 3000);
-    } else {
-      toast.error(data);
-    }
+    createstudent(student);
   };
   return (
     <div
@@ -32,15 +20,15 @@ export const ClassCreate = () => {
     >
       <div
         className="card"
-        style={{ width: "450px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "450px", borderRadius: "12px", height: "440px" }}
       >
         <div
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Create Class</strong>
+          <strong className="ms-5">Create student</strong>
           <Link
-            to="/Class"
+            to="/student"
             className=" btn btn-danger mt-2 mx-2"
             style={{ float: "right" }}
           >
@@ -48,35 +36,33 @@ export const ClassCreate = () => {
           </Link>
         </div>
         <div className="card-body ">
-          <form onSubmit={HandleLogin}>
+          <form onSubmit={studentLogin}>
             <div className="row">
-              <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                <input
-                  type="text"
-                  className="form-control "
-                  placeholder="Enter Your E-mail"
-                  value={User.Email}
-                  onChange={(e) =>
-                    setUser({
-                      Email: e.target.value,
-                      ClassStatus: User.ClassStatus,
-                      ClassName: User.ClassName,
-                    })
-                  }
-                />
-              </div>
-
+        
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
                   type="text"
                   className="form-control mt-4"
-                  placeholder="Enter Your ClassName"
-                  value={User.ClassName}
+                  placeholder="Enter Your E-mail"
+                  value={student.Email}
                   onChange={(e) =>
-                    setUser({
-                      ClassName: e.target.value,
-                      ClassStatus: User.ClassStatus,
-                      Email: User.Email,
+                    setstudent({
+                      ...student,
+                      Email: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                <input
+                  type="text"
+                  className="form-control mt-4"
+                  placeholder="Enter Your Phone"
+                  value={student.Phone}
+                  onChange={(e) =>
+                    setstudent({
+                      ...student,
+                      Phone: e.target.value,
                     })
                   }
                 />
@@ -85,21 +71,33 @@ export const ClassCreate = () => {
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <select
                   className="form-control mt-4"
-                  value={User.ClassStatus}
+                  value={student.Gender}
                   onChange={(e) =>
-                    setUser({
-                      ClassStatus: e.target.value,
-                      ClassName: User.ClassName,
-                      Email: User.Email,
+                    setstudent({
+                      ...student,
+                      Gender: e.target.value,
                     })
                   }
                 >
-                  <option value="">Choose Status</option>
-                  <option value="Active">Active</option>
-                  <option value="Pending">Pending</option>
-                  <option value="Blcoked">Blcoked</option>
-
+                  <option value="">Choose Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
+              </div>
+
+              <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                <input
+                  type="text"
+                  placeholder="Enter Your Address"
+                  className="form-control mt-4"
+                  value={student.Address}
+                  onChange={(e) =>
+                    setstudent({
+                      ...student,
+                      Address: e.target.value,
+                    })
+                  }
+                />
               </div>
 
               <div className="col-6" style={{ width: "30%", margin: "0 auto" }}>
@@ -107,14 +105,13 @@ export const ClassCreate = () => {
                   type="text"
                   className="form-control btn btn-primary mt-4"
                 >
-                  Submit
+                  SignUp
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
-      <Toaster />
     </div>
   );
 };

@@ -39,7 +39,7 @@ const ReceiptPost = async (req, res) => {
         if (!StudentData) return res.send("Student not found")
         let { error: clas } = ClassNameValidation({ ClassName })
         if (clas) return res.send(clas.message)
-        let ClassData = await ClassModel.findOne({ ClassName: ClassName })
+        let ClassData = await ClassModel.findOne({ Email: UserData._id })
         if (!ClassData) return res.send("Class not found")
         let Insert = new PaymentModel({ Name, Email, ReceiptAmount, ClassName })
         let { error } = ReceiptValidation(req.body)

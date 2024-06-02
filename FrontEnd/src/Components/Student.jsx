@@ -1,30 +1,17 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import moment from "moment";
-import { endpoint } from "../../pages/Login";
-import cookie from "universal-cookie";
-export const Student = () => {
-  let [StudentApi, setStudentApi] = useState([]);
-  let Cookie = new cookie();
-  useEffect(() => {
-    let SendRequest = async () => {
-      let { data: StudentData } = await axios.get(
-        endpoint + "/student/Allstudent"
-      );
-      setStudentApi(StudentData);
-    };
-    SendRequest();
-  }, []);
-
-  Cookie.set("StudentData", StudentApi);
-
+import UseStudent from "../Api/Student/UseStudent";
+export const AllStudent = () => {
+  const { GetAllstudent } = UseStudent();
+  localStorage.setItem("student", JSON.stringify(GetAllstudent));
   return (
-    <div className="container" style={{ marginTop: "10px", padding: "0 4%" }}>
-      <Link to={`/StudentCreate`} className="btn btn-info mx-2">
+    <div
+      className="container mt-5"
+      style={{ marginTop: "10px", padding: "0 4%" }}
+    >
+      <Link to={`/student/signup`} className="btn btn-info mt-5 mx-2">
         Create +
       </Link>
-      <table className="table  text-center">
+      <table className="table  mt-5 text-center">
         <thead>
           <tr>
             <th>ID</th>
@@ -38,8 +25,8 @@ export const Student = () => {
           </tr>
         </thead>
         <tbody>
-          {StudentApi &&
-            StudentApi.map((data, index) => (
+          {GetAllstudent &&
+            GetAllstudent.map((data, index) => (
               <tr key={index}>
                 <td>{data._id}</td>
                 <td>{data.Name}</td>
@@ -52,14 +39,14 @@ export const Student = () => {
                   {
                     <div>
                       <Link
-                        to={`/StudentUpdate/${data._id}`}
+                        to={`/student/update/${data._id}`}
                         className="btn btn-primary mx-2"
                       >
                         Edit
                       </Link>
                       |
                       <Link
-                        to={`/StudentDelete/${data._id}`}
+                        to={`/student/delete/${data._id}`}
                         className="btn btn-danger mx-2"
                       >
                         Delete

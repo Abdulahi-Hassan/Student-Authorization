@@ -8,7 +8,7 @@ exports.ConnectionDb =  () => {
 }
 const storage=multer.diskStorage({
     destination:(req,file,cb)=>{
-        cb(null,"public/images")
+        cb(null,"BackEnd/public/images")
     },
     filename:(req,file,cb)=>{
         let imagevalidation=file.fieldname + "_"+Date.now() + path.extname(file.originalname)

@@ -9,8 +9,8 @@ const ClassSchema = new Schema({
     ClassStatus: {
         type: String,
         required: false,
-        default: "Active",
-        enum: ["Active", "Pending", "Blocked"]
+        default: "active",
+        enum: ["active", "pending", "blocked"]
     },
     Email:{
         type:mongoose.Schema.Types.ObjectId,

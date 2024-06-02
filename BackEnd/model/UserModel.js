@@ -11,9 +11,14 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    UserName: {
+    Name: {
         type: String,
         required: true
+    },
+    Gender: {
+        type: String,
+        required: true,
+        enum:["male", "female"]
     },
     Role: {
         type: String,
@@ -21,15 +26,17 @@ const UserSchema = new Schema({
         default: false
 
     },
-    Avator: {
+    Profile: {
         type: String,
-        reqiured: true
+        reqiured: true,
+        default:"Profile_1716655161587.png"
+
     },
     Status: {
         type: String,
         required: false,
-        default: "Active",
-        enum: ["Active", "Pending", "Blocked"]
+        default:"active",
+        enum:["active","inactive","disabled"]
     }
 })
 

@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node BackEnd/server.js",
-    "build":"npm i && npm i --prefix FrontEnd && npm rum build --prefix FrontEnd"
+    "start": "node backend/server.js",
+    "build":"npm i && npm i --prefix frontend && npm rum build --prefix frontend"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 import axios from "axios";
-export const endpoint = "http://localhost:3000/api";
+export const endpoint = "https://student-authorization.onrender.com/api";
 import cookie from 'universal-cookie'
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";

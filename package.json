@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node BackEnd/server.js",
-    "build":"npm i && npm i --prefix FrontEnd && npm run build --prefix FrontEnd && npm run"
+    "build":"npm i && npm i --prefix FrontEnd && npm run build --prefix FrontEnd"
   },
   "keywords": [],
   "author": "",

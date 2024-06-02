@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon BackEnd/server.js",
+    "start": "node BackEnd/server.js",
     "build":"npm i && npm i --prefix FrontEnd && npm run build --prefix FrontEnd"
   },
   "keywords": [],

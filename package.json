@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon BackEnd/server.js",
-    "build":"npm i && npm --prefix frontend && npm rum build --prefix frontend"
+    "build":"npm i && npm i --prefix frontend && npm rum build --prefix frontend"
   },
   "keywords": [],
   "author": "",

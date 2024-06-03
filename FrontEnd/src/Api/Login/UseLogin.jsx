@@ -13,12 +13,11 @@ const UseLogin = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("single", JSON.stringify(Getuser));
       localStorage.setItem("Role", JSON.stringify(data.Role));
-      if (data.Role === "true") {
-      
-          navigate("/AdminDashboard");
-    
+      let user = data.Role === "true";
+      if (user) {
+        navigate("/AdminDashboard");
       } else {
-          navigate("/userdashboard");
+        navigate("/userdashboard");
       }
 
       toast.success(data.message);

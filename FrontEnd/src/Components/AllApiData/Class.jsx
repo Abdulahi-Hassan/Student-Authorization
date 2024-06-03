@@ -15,7 +15,6 @@ export const AllClass = () => {
       <table className="table  text-center mt-5">
         <thead>
           <tr>
-            <th>ID</th>
             <th>ClassName</th>
             <th>E-mail</th>
             <th>ClassStatus</th>
@@ -29,7 +28,6 @@ export const AllClass = () => {
             GetAllclass.map((data, index) => (
               <tr key={index}>
                 
-                <td>{data._id}</td>
                 <td>{data.ClassName}</td>
                 <td>{data.Email.Email}</td>
                 <td>{data.ClassStatus}</td>

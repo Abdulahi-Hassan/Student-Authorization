@@ -16,7 +16,6 @@ const AllUser = () => {
       <table className="table  text-center mt-5">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>E-mail</th>
             <th>Password</th>
@@ -45,7 +44,6 @@ const AllUser = () => {
                   />
                 }
               </td> */}
-              <td>{data._id}</td>
               <td>{data.Name}</td>
               <td>{data.Email}</td>
               <td>{data.Confirm}</td>

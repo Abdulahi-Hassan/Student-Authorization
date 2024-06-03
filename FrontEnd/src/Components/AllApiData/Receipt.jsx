@@ -12,7 +12,6 @@ export const AllPayment = () => {
       <table className="table  text-center mt-5">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>E-mail</th>
             <th>Class</th>
@@ -26,7 +25,6 @@ export const AllPayment = () => {
           {GetAllPayment &&
             GetAllPayment.map((data, index) => (
               <tr key={index}>
-                <td>{data._id}</td>
                 <td>{data.Name.Name}</td>
                 <td>{data.Email.Email}</td>
                 <td>{data.ClassName.ClassName}</td>

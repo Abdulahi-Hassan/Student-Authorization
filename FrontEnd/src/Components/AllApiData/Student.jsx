@@ -14,7 +14,6 @@ export const AllStudent = () => {
       <table className="table  mt-5 text-center">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>E-mail</th>
             <th>Address</th>
@@ -28,7 +27,6 @@ export const AllStudent = () => {
           {GetAllstudent &&
             GetAllstudent.map((data, index) => (
               <tr key={index}>
-                <td>{data._id}</td>
                 <td>{data.Name}</td>
                 <td>{data.Email.Email}</td>
                 <td>{data.Address}</td>

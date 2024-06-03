@@ -25,7 +25,7 @@ import UsePayment from "../../../Api/Payment/UsePayment";
     >
       <div
         className="card"
-        style={{ width: "450px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "350px", borderRadius: "12px", height: "400px" }}
       >
         <div
           className="card-title   "

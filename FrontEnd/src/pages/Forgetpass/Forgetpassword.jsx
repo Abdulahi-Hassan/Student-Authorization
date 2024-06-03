@@ -19,7 +19,7 @@ const Change = () => {
     >
       <div
         className="card"
-        style={{ width: "450px", borderRadius: "12px", height: "340px" }}
+        style={{ width: "450px", borderRadius: "12px", height: "400px" }}
       >
          <div
           className="card-title   "

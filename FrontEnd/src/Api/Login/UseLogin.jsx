@@ -13,8 +13,8 @@ const UseLogin = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("single", JSON.stringify(Getuser));
       localStorage.setItem("Role", JSON.stringify(data.Role));
-      let user = data.Role === "true";
-      if (user) {
+      let { Role } = data;
+      if (Role === "true") {
         navigate("/AdminDashboard");
       } else {
         navigate("/userdashboard");

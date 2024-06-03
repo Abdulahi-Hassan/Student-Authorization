@@ -86,7 +86,7 @@ const UpdateUser = () => {
                   className="form-control mt-4"
                   value={user.Role}
                   onChange={(e) =>
-                    setu({
+                    setuser({
                       ...user,
                       Role: e.target.value,
                     })

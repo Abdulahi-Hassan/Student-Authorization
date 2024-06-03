@@ -54,7 +54,6 @@ const App = () => {
             <Route path="/student/delete/:id" element={<DeleteStudent />} />
             <Route path="/admindashboard" element={<AdminDashboard />} />
             <Route path="/userdashboard" element={<UserDashboard />} />
-            <Route path="/signup" element={<SignUp />} />
           </>
         ) : (
           <>
@@ -68,6 +67,7 @@ const App = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/contuct" element={<Contuct />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         {/* <Route path="/*" element={<h1>Not Found</h1>} /> */}
         <Route path="/forgetpassword" element={<Forgetpassword />} />
       </Routes>

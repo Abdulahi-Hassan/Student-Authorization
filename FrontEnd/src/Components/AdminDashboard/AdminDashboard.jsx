@@ -30,7 +30,7 @@ const AdminDashboard = () => {
             <img
               onClick={ImageEdit}
               className="image"
-              src={`http://localhost:3000/images/` + Getuser.Profile}
+              src={`https://student-authorization.onrender.com/images/` + Getuser.Profile}
               alt=""
             />
           </Link>

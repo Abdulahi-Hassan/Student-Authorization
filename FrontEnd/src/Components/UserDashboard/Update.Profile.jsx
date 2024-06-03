@@ -39,7 +39,7 @@ export const UpdateUserProfile = () => {
             src={`${
               user.Profile
                 ? URL.createObjectURL(user.Profile)
-                : "http://localhost:3000/images/" + Profile
+                : "https://student-authorization.onrender.com/images/" + Profile
             }`}
             style={{
               width: "70px",

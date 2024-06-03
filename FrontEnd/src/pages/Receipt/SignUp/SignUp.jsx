@@ -1,44 +1,26 @@
-import axios from "axios";
-import { useRef, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { endpoint } from "../../pages/Login";
-export const ReceiptCreate = () => {
-  let navigate = useNavigate();
-  const [User, setUser] = useState({
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import UsePayment from "../../../Api/Payment/UsePayment";
+
+ const PaymentCreate = () => {
+  const [Payment, setPayment] = useState({
     Name: "",
     Email: "",
     ClassName: "",
-    ReceiptAmount: "",
+    PaymentAmount: "",
   });
 
-  const HandleLogin = async (e) => {
+  const {InsertPayment}=UsePayment()
+
+  
+  const HandlePayment = async (e) => {
     e.preventDefault();
+    InsertPayment(Payment);
+}
 
-    let lii = parseFloat(User.ReceiptAmount);
-
-    let obj = {
-      Name: User.Name,
-      Email: User.Email,
-
-      ClassName: User.ClassName,
-
-      ReceiptAmount: lii,
-    };
-
-    let { data } = await axios.post(endpoint + "/receipt/signup", obj);
-    if (data.status === "Success") {
-      toast.success(data.message);
-      setTimeout(() => {
-        navigate("/Receipt");
-      }, 3000);
-    } else {
-      toast.error(data);
-    }
-  };
   return (
     <div
-      className="contaier d-flex align-items-center  text-center  justify-content-center  bg-info"
+      className="contaier d-flex align-items-center  text-center  justify-content-center  bg-dark login"
       style={{ height: "600px" }}
     >
       <div
@@ -49,9 +31,9 @@ export const ReceiptCreate = () => {
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Create Receipt</strong>
+          <strong className="ms-5">Create Payment</strong>
           <Link
-            to="/Receipt"
+            to="/Payment"
             className=" btn btn-danger mt-2 mx-2"
             style={{ float: "right" }}
           >
@@ -59,20 +41,18 @@ export const ReceiptCreate = () => {
           </Link>
         </div>
         <div className="card-body ">
-          <form onSubmit={HandleLogin}>
+          <form onSubmit={HandlePayment}>
             <div className="row">
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
                   type="text"
                   className="form-control "
                   placeholder="Enter Your E-mail"
-                  value={User.Email}
+                  value={Payment.Email}
                   onChange={(e) =>
-                    setUser({
-                      Email: e.target.value,
-                      Name: User.Name,
-                      ClassName: User.ClassName,
-                      ReceiptAmount: User.ReceiptAmount,
+                    setPayment({
+                    ...Payment,
+                      Email: e.target.value
                     })
                   }
                 />
@@ -83,13 +63,12 @@ export const ReceiptCreate = () => {
                   type="text"
                   className="form-control mt-4"
                   placeholder="Enter Your StudentName"
-                  value={User.Name}
+                  value={Payment.Name}
                   onChange={(e) =>
-                    setUser({
-                      Name: e.target.value,
-                      Email: User.Email,
-                      ClassName: User.ClassName,
-                      ReceiptAmount: User.ReceiptAmount,
+                    setPayment({
+                    ...Payment,
+
+                      Name: e.target.value
                     })
                   }
                 />
@@ -99,13 +78,12 @@ export const ReceiptCreate = () => {
                   type="text"
                   className="form-control mt-4"
                   placeholder="Enter Your ClassName"
-                  value={User.ClassName}
+                  value={Payment.ClassName}
                   onChange={(e) =>
-                    setUser({
-                      ClassName: e.target.value,
-                      Email: User.Email,
-                      Name: User.Name,
-                      ReceiptAmount: User.ReceiptAmount,
+                    setPayment({
+                    ...Payment,
+
+                      ClassName: e.target.value
                     })
                   }
                 />
@@ -114,15 +92,14 @@ export const ReceiptCreate = () => {
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
                   type="text"
-                  placeholder="Enter Your ReceiptAmount"
+                  placeholder="Enter Your PaymentAmount"
                   className="form-control mt-4"
-                  value={User.ReceiptAmount}
+                  value={Payment.PaymentAmount}
                   onChange={(e) =>
-                    setUser({
-                      ReceiptAmount: e.target.value,
-                      Email: User.Email,
-                      Name: User.Name,
-                      ClassName: User.ClassName,
+                    setPayment({
+                    ...Payment,
+
+                      PaymentAmount: e.target.value
                     })
                   }
                 />
@@ -133,14 +110,15 @@ export const ReceiptCreate = () => {
                   type="text"
                   className="form-control btn btn-primary mt-4"
                 >
-                  Submit
+                  SignUp
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
-      <Toaster />
     </div>
   );
 };
+
+export default PaymentCreate;

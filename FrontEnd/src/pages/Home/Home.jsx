@@ -1,7 +1,7 @@
-import {About} from '../pages/About'
-import {Services} from '../Services/Services'
-import imagehome from '../Images/left-image-C8IKqx-W.png'
-import { Contuct } from './Contuct'
+import imagehome from '../../Images/left-image-C8IKqx-W.png'
+import { About } from '../About/About'
+import { Contuct } from '../Contuct/Contuct'
+import { Services } from '../Services/Services'
 export const Home=()=>{
     return(
         <div className='bg-dark Hooyo text-white lii'>

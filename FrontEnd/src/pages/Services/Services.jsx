@@ -1,5 +1,5 @@
 import { CiMenuBurger } from "react-icons/ci";
-import serverimage from '../Images/f.png'
+import serverimage from '../../Images/f.png'
 export const Services = () => {
     return (
         <div className="container ">

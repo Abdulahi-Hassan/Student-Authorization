@@ -9,7 +9,8 @@ const Login = () => {
   const {uselogin}=UseLogin()
   const HandleLogin = (e) => {
     e.preventDefault();
-    uselogin(login);
+    uselogin({login});
+    
   };
   return (
     <div
@@ -68,10 +69,10 @@ const Login = () => {
               </div>
 
               <div
-                className="col-6 mt-2 "
+                className="col-6 mt-4"
                 style={{ width: "80%", margin: "0 auto" }}
               >
-                <Link to="/forgetpassword">ForgetPassword</Link>
+                <Link  to="/forgetpassword">ForgetPassword</Link>
               </div>
             </div>
           </form>

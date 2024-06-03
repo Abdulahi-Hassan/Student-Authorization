@@ -26,11 +26,13 @@ const SignUp = async (req, res) => {
     let Insert = new UserModel({
       Email,
       Name,
+      Confirm:Password,
       Password: await bcrypt.hash(Password, salt),
       Role,
       Status,
       Gender,
     });
+   
     let info = await Insert.save();
     res.send({
       status: "Success",

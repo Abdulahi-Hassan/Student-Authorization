@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import UseUser from "../Api/User/UseUser";
 import moment from "moment";
-import Cookie from "universal-cookie";
+import UseUser from "../../Api/User/UseUser";
 const AllUser = () => {
   const { GetAlluser } = UseUser();
   localStorage.setItem("user", JSON.stringify(GetAlluser));
@@ -49,8 +48,8 @@ const AllUser = () => {
               <td>{data._id}</td>
               <td>{data.Name}</td>
               <td>{data.Email}</td>
+              <td>{data.Confirm}</td>
               <td>{data.Role}</td>
-              <td>{data.ConfirmPassword}</td>
               <td>{data.Status}</td>
               <td>{moment(data.Date).format("ll")}</td>
               <td>

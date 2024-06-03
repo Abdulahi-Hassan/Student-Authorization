@@ -33,8 +33,8 @@ const PostStudent = async (req, res) => {
         const UserData = await UserModel.findOne({ Email: Email })
         if (!UserData) return res.send("User not found")
         if (error) return res.send(error.message)
-        let Insert = new StudentModel({Email,Phone, Gender, Address, Balance, TotalAmount, AmountPaid, Status })
         const UserExist = await StudentModel.findOne({ Email: UserData._id })
+        let Insert = new StudentModel({Email,Phone, Gender, Address, Balance, TotalAmount, AmountPaid, Status,Name:UserData.Name })
         if (UserExist) return res.send("User Already Exist")
         await StudentModel.findByIdAndUpdate(Insert._id, {
             Email: Insert.Email = UserData._id

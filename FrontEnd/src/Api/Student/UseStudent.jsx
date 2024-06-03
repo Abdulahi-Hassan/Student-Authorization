@@ -7,6 +7,7 @@ axios.defaults.withCredentials = true;
 const UseStudent = () => {
   let navigate = useNavigate();
   const [GetAllstudent, setGetAllstudent] = useState([]);
+  const [GetStudent, setGetStudent] = useState([]);
   const createstudent = async (student) => {
     let { data: Insert } = await axios.post(
       endpoint+"/student/signup",
@@ -23,7 +24,7 @@ const UseStudent = () => {
   };
   const updatestudent = async ({ student, id }) => {
     let { data: Update } = await axios.put(
-      `http://localhost:3000/api/student/${id}`,
+      `${endpoint+"/student"}/${id}`,
       student
     );
     if (Update.status === "Success") {
@@ -38,7 +39,7 @@ const UseStudent = () => {
 
   const deletestudent = async ({ id }) => {
     let { data: Remove } = await axios.delete(
-      `http://localhost:3000/api/student/${id}`
+      `${endpoint+"/student"}/${id}`
     );
     if (Remove.status === "Success") {
       setTimeout(() => {
@@ -50,8 +51,10 @@ const UseStudent = () => {
 
   useEffect(() => {
     const usestudentgetall = async () => {
-      let { data } = await axios.get("http://localhost:3000/api/student");
+      let { data } = await axios.get(endpoint+'/student');
       setGetAllstudent(data);
+      let { data:single } = await axios.get(endpoint+'/student/single');
+      setGetStudent(single);
     };
     usestudentgetall();
   }, []);
@@ -61,6 +64,7 @@ const UseStudent = () => {
     deletestudent,
     updatestudent,
     GetAllstudent,
+    GetStudent
   };
 };
 

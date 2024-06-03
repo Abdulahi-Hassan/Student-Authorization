@@ -40,7 +40,7 @@ nav {
 
 nav a {
   text-decoration: none;
-  padding: 10px;
+  padding: 10px ;
   font-size: 18px;
   font-weight: 600;
  
@@ -262,6 +262,10 @@ th {
 /* .allicons{
   display: none;
 } */
+
+
+
+
  @media screen and (max-width: 1024px) {
   header {
     width: 100%;

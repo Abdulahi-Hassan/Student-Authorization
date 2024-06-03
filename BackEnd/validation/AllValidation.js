@@ -4,7 +4,7 @@ const ReceiptValidation = (RV) => {
         Email: joi.string().required().email(),
         Name: joi.string().required(),
         ClassName: joi.string().required(),
-        ReceiptAmount: joi.number().required()
+        PaymentAmount: joi.number().required()
     })
 
     return Receiptvalidation.validate(RV)

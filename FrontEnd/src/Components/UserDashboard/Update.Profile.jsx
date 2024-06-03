@@ -1,30 +1,26 @@
 import { useState } from "react";
-import UseUser from "../../../Api/User/UseUser";
-import { useParams } from "react-router-dom";
-const UpdateUser = () => {
+import { Link, useNavigate, useParams } from "react-router-dom";
+import UseUser from "../../Api/User/UseUser";
+export const UpdateUserProfile = () => {
+  let navigate = useNavigate();
   let { id } = useParams();
-  let UserData=JSON.parse(localStorage.getItem("user"));
-  if(!UserData){
-    navigate("/user")
+  let UserExist = JSON.parse(localStorage.getItem("single"));
+  if (!UserExist) {
+    navigate("/login");
+    return;
   }
-  const UserExist=UserData.filter(data=>data._id===id)[0];
-  const {Profile,Name,Email,Role}=UserExist;
+  const { Profile, Name, Email } = UserExist;
   const [user, setuser] = useState({
     Name: Name,
-    Email: Email,
     Profile: "",
-    Role: Role,
+    Email: Email,
   });
 
   const { useuserupdate } = UseUser();
-  const Handleuser = (e) => {
-    let formdata = new FormData();
-    formdata.append("Name", user.Name);
-    formdata.append("Email", user.Email);
-    formdata.append("Profile", user.Profile);
-    formdata.append("Role", user.Role);
+
+  const HandleProfile = async (e) => {
     e.preventDefault();
-    useuserupdate({ formdata, id });
+    useuserupdate({ user,id });
   };
   return (
     <div
@@ -39,19 +35,24 @@ const UpdateUser = () => {
           className="card-title "
           style={{ fontSize: "38px", fontWeight: "bold" }}
         >
-         
-         <img src={`${user.Profile ? URL.createObjectURL(user.Profile):"http://localhost:3000/images/"+Profile}`}  style={{
-                      width: "70px",
-                      borderRadius: "50%",
-                      height: "70px",
-                      margin: "4px auto",
-                    }}
-                    alt=""
-                  />
+          <img
+            src={`${
+              user.Profile
+                ? URL.createObjectURL(user.Profile)
+                : "http://localhost:3000/images/" + Profile
+            }`}
+            style={{
+              width: "70px",
+              borderRadius: "50%",
+              height: "70px",
+              margin: "4px auto",
+            }}
+            alt=""
+          />
         </div>
 
         <div className="card-body ">
-          <form onSubmit={Handleuser}>
+          <form onSubmit={HandleProfile}>
             <div className="row">
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
@@ -81,21 +82,6 @@ const UpdateUser = () => {
                   }
                 />
               </div>
-              <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                <select
-                  className="form-control mt-4"
-                  value={user.Role}
-                  onChange={(e) =>
-                    setuser({
-                      ...user,
-                      Role: e.target.value,
-                    })
-                  }
-                >
-                  <option value="true">Admin</option>
-                  <option value="false">User</option>
-                </select>
-              </div>
 
               <div
                 className="col-6 "
@@ -106,7 +92,7 @@ const UpdateUser = () => {
                   className="btn btn-primary mt-4"
                   style={{ width: "40%" }}
                 >
-                  user
+                  Change
                 </button>
               </div>
             </div>
@@ -116,4 +102,3 @@ const UpdateUser = () => {
     </div>
   );
 };
-export default UpdateUser;

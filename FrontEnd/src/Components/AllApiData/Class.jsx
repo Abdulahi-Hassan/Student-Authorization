@@ -1,52 +1,52 @@
 import { Link } from "react-router-dom";
-import UseStudent from "../Api/Student/UseStudent";
-export const AllStudent = () => {
-  const { GetAllstudent } = UseStudent();
-  localStorage.setItem("student", JSON.stringify(GetAllstudent));
+import moment from "moment";
+import UseClass from "../../Api/Class/UseClass";
+export const AllClass = () => {
+  const { GetAllclass } = UseClass();
+  localStorage.setItem("class", JSON.stringify(GetAllclass));
   return (
     <div
       className="container mt-5"
       style={{ marginTop: "10px", padding: "0 4%" }}
     >
-      <Link to={`/student/signup`} className="btn btn-info mt-5 mx-2">
+      <Link to={`/Class/signup`} className="btn btn-info mt-5 mx-2">
         Create +
       </Link>
-      <table className="table  mt-5 text-center">
+      <table className="table  text-center mt-5">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>ClassName</th>
             <th>E-mail</th>
-            <th>Address</th>
-            <th>Balace</th>
-            <th>Status</th>
+            <th>ClassStatus</th>
+            <th>Date</th>
 
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {GetAllstudent &&
-            GetAllstudent.map((data, index) => (
+          {GetAllclass &&
+            GetAllclass.map((data, index) => (
               <tr key={index}>
+                
                 <td>{data._id}</td>
-                <td>{data.Name}</td>
+                <td>{data.ClassName}</td>
                 <td>{data.Email.Email}</td>
-                <td>{data.Address}</td>
-                <td>{data.Balance}</td>
-                <td>{data.Status}</td>
+                <td>{data.ClassStatus}</td>
+                <td>{moment(data.ClassDate).format("LL")}</td>
 
                 <td>
                   {
                     <div>
                       <Link
-                        to={`/student/update/${data._id}`}
+                        to={`/Class/Update/${data._id}`}
                         className="btn btn-primary mx-2"
                       >
                         Edit
                       </Link>
                       |
                       <Link
-                        to={`/student/delete/${data._id}`}
+                        to={`/Class/Delete/${data._id}`}
                         className="btn btn-danger mx-2"
                       >
                         Delete

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import UseStudent from "../../../Api/Student/UseStudent";
 export const UpdateStudent = () => {
   let navigate=useNavigate()
   const { id } = useParams();
@@ -16,13 +17,14 @@ export const UpdateStudent = () => {
     Gender: Gender,
     Address: Address,
   });
+  const {updatestudent}=UseStudent()
   const studentLogin = async (e) => {
     e.preventDefault();
     updatestudent({ student, id });
   };
   return (
     <div
-      className="contaier d-flex align-items-center  text-center  justify-content-center  bg-info"
+      className="contaier d-flex align-items-center  text-center  justify-content-center  bg-dark login"
       style={{ height: "600px" }}
     >
       <div

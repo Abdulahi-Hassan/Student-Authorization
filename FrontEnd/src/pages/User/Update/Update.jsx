@@ -40,7 +40,7 @@ const UpdateUser = () => {
           style={{ fontSize: "38px", fontWeight: "bold" }}
         >
          
-         <img src={`${user.Profile ? URL.createObjectURL(user.Profile):"https://student-authorization.onrender.com/images/"+Profile}`}  style={{
+         <img src={`${user.Profile ? URL.createObjectURL(user.Profile):"http://localhost:3000/images/"+Profile}`}  style={{
                       width: "70px",
                       borderRadius: "50%",
                       height: "70px",
@@ -86,7 +86,7 @@ const UpdateUser = () => {
                   className="form-control mt-4"
                   value={user.Role}
                   onChange={(e) =>
-                    setuser({
+                    setu({
                       ...user,
                       Role: e.target.value,
                     })

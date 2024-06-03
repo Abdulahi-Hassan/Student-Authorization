@@ -11,13 +11,17 @@ const UseLogin = () => {
     let { data } = await axios.post(endpoint + "/auth/login", login);
     if (data.status === "Success") {
       localStorage.setItem("token", data.token);
-      localStorage.setItem("single", JSON.stringify(Getuser));
       localStorage.setItem("Role", JSON.stringify(data.Role));
+      localStorage.setItem("single", JSON.stringify(Getuser));
       let { Role } = data;
       if (Role === "true") {
-        navigate("/AdminDashboard");
+        setTimeout(() => {
+          navigate("/AdminDashboard");
+        }, 3000);
       } else {
-        navigate("/userdashboard");
+        setTimeout(() => {
+          navigate("/UserDashboard");
+        }, 3000);
       }
 
       toast.success(data.message);

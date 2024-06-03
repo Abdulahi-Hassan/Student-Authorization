@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const multer=require('multer')
 const path=require('path')
 require('dotenv').config()
-let jwt = require('jsonwebtoken')
 exports.ConnectionDb =  () => {
      mongoose.connect(process.env.mongodb).then(() => console.log(process.env.mongodbconnect))
 }

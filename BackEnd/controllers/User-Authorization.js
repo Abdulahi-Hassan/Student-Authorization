@@ -23,16 +23,19 @@ const SignUp = async (req, res) => {
     let { error: gender } = GenderValidation({ Gender });
     if (gender) return res.send(gender.message);
     let salt = await bcrypt.genSalt(10);
+    let Boy = "Profile_1717436654624.png";
+    let Girl = "Profile_1717436654623.png";
     let Insert = new UserModel({
       Email,
       Name,
-      Confirm:Password,
+      Confirm: Password,
       Password: await bcrypt.hash(Password, salt),
       Role,
       Status,
       Gender,
+      Profile: Gender === "male" ? Boy : Girl,
     });
-   
+
     let info = await Insert.save();
     res.send({
       status: "Success",
@@ -60,7 +63,7 @@ const Login = async (req, res) => {
   }
 };
 
-const Logout = (req,res) => {
+const Logout = (req, res) => {
   try {
     res.clearCookie("token");
     res.json({
@@ -100,4 +103,4 @@ const Change = async (req, res) => {
   }
 };
 
-module.exports = { Login, Change, SignUp,Logout };
+module.exports = { Login, Change, SignUp, Logout };

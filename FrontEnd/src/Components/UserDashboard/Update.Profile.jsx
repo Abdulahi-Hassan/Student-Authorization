@@ -9,24 +9,31 @@ export const UpdateUserProfile = () => {
     navigate("/login");
     return;
   }
+
   const { Profile, Name, Email } = UserExist;
+
   const [user, setuser] = useState({
     Name: Name,
-    Profile: "",
+    Profile: '',
     Email: Email,
   });
 
   const { useuserupdate } = UseUser();
-
   const HandleProfile = async (e) => {
     e.preventDefault();
-    useuserupdate({ user,id });
+    let formdata = new FormData();
+    formdata.append("Name", user.Name);
+    formdata.append("Profile", user.Profile);
+    formdata.append("Email", user.Email);
+    useuserupdate({ formdata,id });
   };
   return (
+
     <div
       className="contaier d-flex align-items-center  text-center mt-5  justify-content-center  bg-dark login"
       style={{ height: "600px" }}
     >
+
       <div
         className="card"
         style={{ width: "450px", borderRadius: "12px", height: "400px" }}
@@ -35,11 +42,11 @@ export const UpdateUserProfile = () => {
           className="card-title "
           style={{ fontSize: "38px", fontWeight: "bold" }}
         >
-          <img
+           <img
             src={`${
               user.Profile
                 ? URL.createObjectURL(user.Profile)
-                : "https://student-authorization.onrender.com/images/" + Profile
+                : "http://localhost:3000/images/" + Profile
             }`}
             style={{
               width: "70px",
@@ -49,10 +56,12 @@ export const UpdateUserProfile = () => {
             }}
             alt=""
           />
+          
         </div>
 
         <div className="card-body ">
           <form onSubmit={HandleProfile}>
+
             <div className="row">
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input

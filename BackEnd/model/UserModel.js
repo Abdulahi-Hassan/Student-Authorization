@@ -14,6 +14,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  Profile: {
+    type: String,
+    reqiured: true,
+  },
   Confirm: {
     type: String,
     required: false,
@@ -28,11 +32,7 @@ const UserSchema = new Schema({
     required: false,
     default: false,
   },
-  Profile: {
-    type: String,
-    reqiured: true,
-    default: "Profile_1716655161587.png",
-  },
+ 
   Status: {
     type: String,
     required: false,

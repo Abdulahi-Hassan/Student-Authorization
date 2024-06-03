@@ -19,6 +19,7 @@ const GetUser = async (req, res) => {
 
 const PutUser = async (req, res) => {
   try {
+   
     let { Email, Name, Password, Role, Status, Gender } = req.body;
     let { id } = req.params;
     let salt = await bcrypt.genSalt(10);

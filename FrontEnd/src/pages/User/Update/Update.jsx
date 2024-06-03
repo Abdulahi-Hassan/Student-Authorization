@@ -3,12 +3,12 @@ import UseUser from "../../../Api/User/UseUser";
 import { useParams } from "react-router-dom";
 const UpdateUser = () => {
   let { id } = useParams();
-  let UserData=JSON.parse(localStorage.getItem("user"));
-  if(!UserData){
-    navigate("/user")
+  let UserData = JSON.parse(localStorage.getItem("user"));
+  if (!UserData) {
+    navigate("/user");
   }
-  const UserExist=UserData.filter(data=>data._id===id)[0];
-  const {Profile,Name,Email,Role}=UserExist;
+  const UserExist = UserData.filter((data) => data._id === id)[0];
+  const { Profile, Name, Email, Role } = UserExist;
   const [user, setuser] = useState({
     Name: Name,
     Email: Email,
@@ -33,21 +33,26 @@ const UpdateUser = () => {
     >
       <div
         className="card"
-        style={{ width: "350px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "400px", borderRadius: "12px", height: "400px" }}
       >
         <div
           className="card-title "
           style={{ fontSize: "38px", fontWeight: "bold" }}
         >
-         
-         <img src={`${user.Profile ? URL.createObjectURL(user.Profile):"http://localhost:3000/images/"+Profile}`}  style={{
-                      width: "70px",
-                      borderRadius: "50%",
-                      height: "70px",
-                      margin: "4px auto",
-                    }}
-                    alt=""
-                  />
+          <img
+            src={`${
+              user.Profile
+                ? URL.createObjectURL(user.Profile)
+                : "http://localhost:3000/images/" + Profile
+            }`}
+            style={{
+              width: "70px",
+              borderRadius: "50%",
+              height: "70px",
+              margin: "4px auto",
+            }}
+            alt=""
+          />
         </div>
 
         <div className="card-body ">

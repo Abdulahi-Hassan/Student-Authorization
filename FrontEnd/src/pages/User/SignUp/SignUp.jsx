@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UseSignUp from "../../../Api/User/UseUser";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   let token=localStorage.getItem('token')
   
@@ -13,6 +13,7 @@ const SignUp = () => {
   const { useusersignup } = UseSignUp();
   const Handleuser = (e) => {
     e.preventDefault();
+  
     useusersignup(user);
   };
   return (
@@ -22,7 +23,7 @@ const SignUp = () => {
     >
       <div
         className="card"
-        style={{ width: "350px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "400px", borderRadius: "12px", height: "400px" }}
       >
         <div
           className="card-title   "
@@ -81,13 +82,20 @@ const SignUp = () => {
                 />
               </div>
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                <input
-                  type="text"
+                <select
                   className="form-control mt-4"
-                  placeholder="Enter Your Gender"
                   value={user.Gender}
-                  onChange={(e) => setuser({ ...user, Gender: e.target.value })}
-                />
+                  onChange={(e) =>
+                    setuser({
+                      ...user,
+                      Gender: e.target.value,
+                    })
+                  }
+                >
+                  <option value="">Choose Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
               </div>
 
               <div
@@ -99,7 +107,7 @@ const SignUp = () => {
                   className="btn btn-primary mt-4"
                   style={{ width: "40%" }}
                 >
-                  user
+                  SignUp
                 </button>
               </div>
             </div>

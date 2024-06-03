@@ -9,7 +9,7 @@ const UseUser = () => {
   const [GetAlluser, setGetAlluser] = useState([]);
   const [Getuser, setGetuser] = useState([]);
   let token = localStorage.getItem("token");
-  // let UserExist = JSON.parse(localStorage.getItem("single"));
+  let UserExist = JSON.parse(localStorage.getItem("single"));
   const useusersignup = async (signup) => {
     let { data } = await axios.post(endpoint + "/auth/signup", signup);
     if (data.status === "Success") {
@@ -31,17 +31,16 @@ const UseUser = () => {
   const useuserupdate = async ({ formdata, id }) => {
     let { data } = await axios.put(`${endpoint + "/user"}/${id}`, formdata);
     if (data.status === "Success") {
-      setTimeout(() => {
-        navigate("/login");
-        localStorage.removeItem("token");
-      }, 3000);
-      // if (id === UserExist._id) {
-       
-      // } else {
-      //   setTimeout(() => {
-      //     navigate("/user");
-      //   }, 3000);
-      // }
+      if (id === UserExist._id) {
+        setTimeout(() => {
+          navigate("/login");
+          localStorage.removeItem("token");
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          navigate("/user");
+        }, 3000);
+      }
       toast.success(data.message);
     } else {
       toast.error(data);

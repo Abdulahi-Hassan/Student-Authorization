@@ -12,7 +12,7 @@ export const Header = () => {
         setTimeout(() => {
             navigate('/login')
         },);
-        localStorage.removeItem("token")
+        localStorage.clear()
     }
     return (
         <div className="container lii ">

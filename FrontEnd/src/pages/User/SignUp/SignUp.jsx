@@ -26,13 +26,13 @@ const SignUp = () => {
     >
       <div
         className="card"
-        style={{ width: "400px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "300px", borderRadius: "12px", height: "400px" }}
       >
         <div
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Create User</strong>
+          <strong className="ms-5">Create</strong>
         {token ? 
          <Link to="/user"
          className=" btn btn-danger mt-2 mx-2"

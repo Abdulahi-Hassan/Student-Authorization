@@ -19,13 +19,13 @@ const Change = () => {
     >
       <div
         className="card"
-        style={{ width: "400px", borderRadius: "12px", height: "340px" }}
+        style={{ width: "300px", borderRadius: "12px", height: "340px" }}
       >
          <div
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Change</strong>
+          <strong className="ms-5">change</strong>
           <Link
             to="/login"
             className=" btn btn-danger mt-2 mx-2"
@@ -80,7 +80,7 @@ const Change = () => {
                 <button
                   type="submit"
                   className="btn btn-primary mt-4"
-                  style={{ width: "40%" }}
+                  style={{ width: "50%" }}
                 >
                   Change
                 </button>

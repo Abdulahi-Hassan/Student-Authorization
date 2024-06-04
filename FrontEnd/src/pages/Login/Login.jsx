@@ -19,7 +19,7 @@ const Login = () => {
     >
       <div
         className="card"
-        style={{ width: "400px", borderRadius: "12px", height: "340px" }}
+        style={{ width: "300px", borderRadius: "12px", height: "340px" }}
       >
         <div
           className="card-title "

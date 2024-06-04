@@ -55,7 +55,6 @@ const App = () => {
             <Route path="/admindashboard" element={<AdminDashboard />} />
             <Route path="/userdashboard" element={<UserDashboard />} />
             <Route path="/Profile/:id" element={<UpdateUserProfile />} />
-
           </>
         ) : (
           <>
@@ -70,7 +69,7 @@ const App = () => {
         <Route path="/contuct" element={<Contuct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        {/* <Route path="/*" element={<h1>Not Found</h1>} /> */}
+        <Route path="/*" element={<Navigate to="/" />} />
         <Route path="/forgetpassword" element={<Forgetpassword />} />
       </Routes>
       <Toaster />

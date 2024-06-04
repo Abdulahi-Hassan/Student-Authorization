@@ -100,6 +100,7 @@ const ReceiptPost = async (req, res) => {
       { new: true }
     );
 
+
     await Insert.save();
 
     res.send({
@@ -117,14 +118,16 @@ const PutReceipt = async (req, res) => {
     let { Name, Email, ClassName, PaymentAmount } = req.body;
     let { error } = ReceiptValidation(req.body);
     if (error) return res.send(error.message);
+    let PayMoney = parseInt(PaymentAmount);
+
 
     let StudentData = await StudentModel.findOne({ _id: id });
     let ClassData = await ClassModel.findOne({ Email: StudentData.Email });
     let UserData = await UserModel.findOne({ _id: StudentData.Email });
 
-    let TotalAmountPaid = parseFloat(StudentData.Balance + PaymentAmount);
-    let CurrencyBalance = StudentData.TotalAmount + PaymentAmount;
-    if (PaymentAmount === 0) {
+    let TotalAmountPaid = parseFloat(StudentData.Balance + PayMoney);
+    let CurrencyBalance = StudentData.TotalAmount + PayMoney;
+    if (PayMoney === 0) {
       res.send("Please Enter Digit Greater than 0");
       return;
     }

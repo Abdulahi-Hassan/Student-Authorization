@@ -111,7 +111,7 @@ const UpdateUser = () => {
                   className="btn btn-primary mt-4"
                   style={{ width: "40%" }}
                 >
-                  user
+                  Update
                 </button>
               </div>
             </div>

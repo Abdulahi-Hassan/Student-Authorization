@@ -34,14 +34,14 @@ const Table = () => {
         <thead>
           <tr>
             <th>Email</th>
-            <th>Name</th>
+            <th>Gender</th>
             <th>Role</th>
           </tr>
         </thead>
         <tbody>
         <tr >
                 <td>{Getuser.Email}</td>
-                <td>{Getuser.Name}</td>
+                <td>{Getuser.Gender}</td>
                 <td>{Getuser.Role}</td>
               </tr>
         </tbody>

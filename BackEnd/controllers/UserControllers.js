@@ -12,30 +12,35 @@ const GetAllUser = async (req, res) => {
 const GetUser = async (req, res) => {
   let { id } = req.user;
   let GetUserID = await UserModel.findById(id);
-  if(GetUserID){
-      res.send(GetUserID);
+  if(!GetUserID) {
+    res.status(404).send("User Not Found")
+  }else{
+    res.send(GetUserID);
   }
+ 
 };
 
 const PutUser = async (req, res) => {
   try {
    
-    let { Email, Name, Password, Role, Status, Gender } = req.body;
+    let { Email, Name, Role, Status, Gender,Confirm } = req.body;
+   
     let { id } = req.params;
     let salt = await bcrypt.genSalt(10);
     let Update = await UserModel.findByIdAndUpdate(
       id,
-      { Email, Name, Role, Status, Gender },
+      { Email, Name, Role, Status, Gender ,Confirm },
       { new: true }
     );
     if (req.file) {
       Update.Profile = req.file.filename;
     }
 
-    if (Password) {
-      Update.Password = await bcrypt.hash(Password, salt);
+    if (Confirm) {
+      Update.Password = await bcrypt.hash(Confirm, salt);
     }
-
+   
+  
     await Update.save();
     res.send({
       status: "Success",

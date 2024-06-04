@@ -1,5 +1,4 @@
 const {
-  UserValidation,
   LoginValidation,
   EmailValidation,
   ChangeValidation,
@@ -11,9 +10,7 @@ const GenerateToken = require("../token/Generate-token");
 
 const SignUp = async (req, res) => {
   try {
-    let { Email, Name, Password, Role, Status, Gender } = req.body;
-    let { error } = UserValidation({ Name });
-    if (error) return res.send(error.message);
+    let { Email, Password, Role, Status, Gender } = req.body;
     let { error: email } = EmailValidation({ Email });
     if (email) return res.send(email.message);
     let findEmail = await UserModel.findOne({ Email: Email });
@@ -27,14 +24,16 @@ const SignUp = async (req, res) => {
     let Girl = "Profile_1717436654623.png";
     let Insert = new UserModel({
       Email,
-      Name,
+      Name: "",
       Confirm: Password,
       Password: await bcrypt.hash(Password, salt),
       Role,
       Status,
       Gender,
-      Profile: Gender === "male" ? Boy : Girl,
     });
+    if (req.file) {
+      Insert.Profile = req.file.filename;
+    }
 
     let info = await Insert.save();
     res.send({
@@ -91,7 +90,7 @@ const Change = async (req, res) => {
       return res.send("Please Match Two Password !");
     await UserModel.findByIdAndUpdate(
       UserData._id,
-      { Password: await bcrypt.hash(Password, salt) },
+      { Password: await bcrypt.hash(Password, salt), Confirm: Password },
       { new: true }
     );
     res.json({

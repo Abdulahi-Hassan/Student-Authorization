@@ -1,39 +1,30 @@
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UseUser from "../../Api/User/UseUser";
 export const UpdateUserProfile = () => {
-  let navigate = useNavigate();
   let { id } = useParams();
-  let UserExist = JSON.parse(localStorage.getItem("single"));
-  if (!UserExist) {
-    navigate("/login");
-    return;
-  }
-
-  const { Profile, Name, Email } = UserExist;
-
+  const liibaan = JSON.parse(localStorage.getItem("single"));
+  const { useuserupdate, Getuser } = UseUser();
+  localStorage.setItem("single", JSON.stringify(Getuser));
   const [user, setuser] = useState({
-    Name: Name,
-    Profile: '',
-    Email: Email,
+    Confirm: liibaan.Confirm,
+    Profile: "",
+    Email: liibaan.Email,
   });
 
-  const { useuserupdate } = UseUser();
   const HandleProfile = async (e) => {
     e.preventDefault();
     let formdata = new FormData();
-    formdata.append("Name", user.Name);
+    formdata.append("Confirm", user.Confirm);
     formdata.append("Profile", user.Profile);
     formdata.append("Email", user.Email);
-    useuserupdate({ formdata,id });
+    useuserupdate({ formdata, id });
   };
   return (
-
     <div
       className="contaier d-flex align-items-center  text-center mt-5  justify-content-center  bg-dark login"
       style={{ height: "600px" }}
     >
-
       <div
         className="card"
         style={{ width: "450px", borderRadius: "12px", height: "400px" }}
@@ -42,11 +33,11 @@ export const UpdateUserProfile = () => {
           className="card-title "
           style={{ fontSize: "38px", fontWeight: "bold" }}
         >
-           <img
+          <img
             src={`${
               user.Profile
                 ? URL.createObjectURL(user.Profile)
-                : "http://localhost:3000/images/" + Profile
+                : "http://localhost:3000/images/" + Getuser.Profile
             }`}
             style={{
               width: "70px",
@@ -56,29 +47,29 @@ export const UpdateUserProfile = () => {
             }}
             alt=""
           />
-          
         </div>
 
         <div className="card-body ">
           <form onSubmit={HandleProfile}>
-
             <div className="row">
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
                   type="text"
                   className="form-control "
-                  placeholder="Enter Your Name"
-                  value={user.Name}
-                  onChange={(e) => setuser({ ...user, Name: e.target.value })}
+                  placeholder="Enter Your Email"
+                  value={user.Email}
+                  onChange={(e) => setuser({ ...user, Email: e.target.value })}
                 />
               </div>
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
                   type="text"
                   className="form-control mt-4"
-                  placeholder="Enter Your Email"
-                  value={user.Email}
-                  onChange={(e) => setuser({ ...user, Email: e.target.value })}
+                  placeholder="Enter Your Confirm"
+                  value={user.Confirm}
+                  onChange={(e) =>
+                    setuser({ ...user, Confirm: e.target.value })
+                  }
                 />
               </div>
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>

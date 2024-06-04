@@ -12,11 +12,12 @@ const UserSchema = new Schema({
   },
   Name: {
     type: String,
-    required: true,
+    required: false,
   },
   Profile: {
     type: String,
     reqiured: true,
+    default:"Profile_1717473065902.png"
   },
   Confirm: {
     type: String,

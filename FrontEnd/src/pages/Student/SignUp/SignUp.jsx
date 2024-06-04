@@ -6,6 +6,7 @@ export const SignUpStudent = () => {
     Email: "",
     Phone: "",
     Gender: "",
+    Name: "",
     Address: "",
   });
   const { createstudent } = UseStudent();
@@ -26,7 +27,7 @@ export const SignUpStudent = () => {
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Create student</strong>
+          <strong className="ms-5">Create</strong>
           <Link
             to="/student"
             className=" btn btn-danger mt-2 mx-2"
@@ -40,6 +41,20 @@ export const SignUpStudent = () => {
             <div className="row">
         
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                <input
+                  type="text"
+                  className="form-control "
+                  placeholder="Enter Your Name"
+                  value={student.Name}
+                  onChange={(e) =>
+                    setstudent({
+                      ...student,
+                      Name: e.target.value,
+                    })
+                  }
+                />
+              </div>
+                <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
                   type="text"
                   className="form-control mt-4"

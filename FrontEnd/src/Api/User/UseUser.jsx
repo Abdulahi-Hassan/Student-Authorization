@@ -7,11 +7,11 @@ import { endpoint } from "../../main";
 const UseUser = () => {
   let navigate = useNavigate();
   const [GetAlluser, setGetAlluser] = useState([]);
-  const [Getuser, setGetuser] = useState([]);
+  const [Getuser, setGetuser] = useState("");
   let token = localStorage.getItem("token");
   let UserExist = JSON.parse(localStorage.getItem("single"));
-  const useusersignup = async (signup) => {
-    let { data } = await axios.post(endpoint + "/auth/signup", signup);
+  const useusersignup = async ({ formdata }) => {
+    let { data } = await axios.post(endpoint + "/auth/signup", formdata);
     if (data.status === "Success") {
       toast.success(data.message);
       if (token) {
@@ -33,8 +33,8 @@ const UseUser = () => {
     if (data.status === "Success") {
       if (id === UserExist._id) {
         setTimeout(() => {
-          navigate("/login");
-          localStorage.removeItem("token");
+          navigate("/userdashboard");
+          // localStorage.clear();
         }, 3000);
       } else {
         setTimeout(() => {

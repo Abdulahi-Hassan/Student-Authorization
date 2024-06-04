@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import moment from "moment";
 import UseUser from "../../Api/User/UseUser";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 const AllUser = () => {
   const { GetAlluser } = UseUser();
   localStorage.setItem("user", JSON.stringify(GetAlluser));
-
   return (
     <div
       className="container mt-5"

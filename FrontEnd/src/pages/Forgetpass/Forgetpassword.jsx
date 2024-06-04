@@ -19,13 +19,13 @@ const Change = () => {
     >
       <div
         className="card"
-        style={{ width: "400px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "400px", borderRadius: "12px", height: "340px" }}
       >
          <div
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Create student</strong>
+          <strong className="ms-5">Change</strong>
           <Link
             to="/login"
             className=" btn btn-danger mt-2 mx-2"

@@ -54,6 +54,8 @@ const App = () => {
             <Route path="/student/delete/:id" element={<DeleteStudent />} />
             <Route path="/admindashboard" element={<AdminDashboard />} />
             <Route path="/userdashboard" element={<UserDashboard />} />
+            <Route path="/Profile/:id" element={<UpdateUserProfile />} />
+
           </>
         ) : (
           <>

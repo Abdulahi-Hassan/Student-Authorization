@@ -31,7 +31,7 @@ import UsePayment from "../../../Api/Payment/UsePayment";
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Create Payment</strong>
+          <strong className="ms-5"> Create</strong>
           <Link
             to="/Payment"
             className=" btn btn-danger mt-2 mx-2"

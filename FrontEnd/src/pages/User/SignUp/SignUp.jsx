@@ -3,9 +3,8 @@ import UseSignUp from "../../../Api/User/UseUser";
 import { Link } from "react-router-dom";
 const SignUp = () => {
   let token=localStorage.getItem('token')
-  
   const [user, setuser] = useState({
-    Name: "",
+    Profile: "",
     Email: "",
     Password: "",
     Gender: "",
@@ -13,8 +12,12 @@ const SignUp = () => {
   const { useusersignup } = UseSignUp();
   const Handleuser = (e) => {
     e.preventDefault();
-  
-    useusersignup(user);
+    let formdata=new FormData();
+    formdata.append("Profile", user.Profile);
+    formdata.append("Gender", user.Gender);
+    formdata.append("Password", user.Password);
+    formdata.append("Email", user.Email);
+    useusersignup({formdata});
   };
   return (
     <div
@@ -52,19 +55,11 @@ const SignUp = () => {
         <div className="card-body ">
           <form onSubmit={Handleuser}>
             <div className="row">
+             
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <input
                   type="text"
                   className="form-control "
-                  placeholder="Enter Your Name"
-                  value={user.Name}
-                  onChange={(e) => setuser({ ...user, Name: e.target.value })}
-                />
-              </div>
-              <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
-                <input
-                  type="text"
-                  className="form-control mt-4"
                   placeholder="Enter Your Email"
                   value={user.Email}
                   onChange={(e) => setuser({ ...user, Email: e.target.value })}
@@ -81,6 +76,7 @@ const SignUp = () => {
                   }
                 />
               </div>
+            
               <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
                 <select
                   className="form-control mt-4"
@@ -97,7 +93,13 @@ const SignUp = () => {
                   <option value="female">Female</option>
                 </select>
               </div>
-
+              <div className="col-6" style={{ width: "80%", margin: "0 auto" }}>
+                <input
+                  type="file"
+                  className="form-control mt-4 "
+                  onChange={(e) => setuser({ ...user, Profile: e.target.files[0] })}
+                />
+              </div>
               <div
                 className="col-6 "
                 style={{ width: "80%", margin: "0 auto" }}

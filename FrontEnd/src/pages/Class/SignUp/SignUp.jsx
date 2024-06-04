@@ -25,7 +25,7 @@ const ClassCreate = () => {
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Create Class</strong>
+          <strong className="ms-5"> Class</strong>
           <Link
             to="/class"
             className=" btn btn-danger mt-2 mx-2"

@@ -3,10 +3,9 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { endpoint } from "../../main";
 import UseUser from "../User/UseUser";
-
 const UseLogin = () => {
-  const { Getuser } = UseUser();
   let navigate = useNavigate();
+  let {Getuser}=UseUser()
   const uselogin = async ({ login }) => {
     let { data } = await axios.post(endpoint + "/auth/login", login);
     if (data.status === "Success") {

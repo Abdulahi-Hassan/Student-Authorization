@@ -35,7 +35,7 @@ export const UpdateStudent = () => {
           className="card-title   "
           style={{ fontSize: "38px", fontWeight: "600" }}
         >
-          <strong className="ms-5">Update student</strong>
+          <strong className="ms-5">Update</strong>
           <Link
             to="/student"
             className=" btn btn-danger mt-2 mx-2"

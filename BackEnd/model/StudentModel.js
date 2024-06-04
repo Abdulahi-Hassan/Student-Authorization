@@ -4,7 +4,7 @@ const { Schema, model } = mongoose
 const StudentSchema = new Schema({
     Name: {
         type: String,
-        required: false
+        required: true
     },
     Email:{
         type:mongoose.Schema.Types.ObjectId,

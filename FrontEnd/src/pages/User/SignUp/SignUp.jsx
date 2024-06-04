@@ -26,7 +26,7 @@ const SignUp = () => {
     >
       <div
         className="card"
-        style={{ width: "300px", borderRadius: "12px", height: "400px" }}
+        style={{ width: "380px", borderRadius: "12px", height: "400px" }}
       >
         <div
           className="card-title   "

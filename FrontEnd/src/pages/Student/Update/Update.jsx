@@ -29,7 +29,7 @@ export const UpdateStudent = () => {
     >
       <div
         className="card"
-        style={{ width: "400px", borderRadius: "12px", height: "440px" }}
+        style={{ width: "380px", borderRadius: "12px", height: "440px" }}
       >
         <div
           className="card-title   "

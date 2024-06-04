@@ -29,7 +29,7 @@ const ClassUpdate = () => {
     >
       <div
         className="card"
-        style={{ width: "400px", borderRadius: "12px", height: "340px" }}
+        style={{ width: "380px", borderRadius: "12px", height: "340px" }}
       >
          <div
           className="card-title   "

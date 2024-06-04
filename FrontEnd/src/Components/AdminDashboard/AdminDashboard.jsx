@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 import UseUser from "../../Api/User/UseUser";
 import { UpdateUserProfile } from "../UserDashboard/Update.Profile";
+import { endpoint } from "../../main";
 const AdminDashboard = () => {
   const { Getuser } = UseUser();
   const Handle = () => {
@@ -30,7 +31,7 @@ const AdminDashboard = () => {
             <img
               onClick={ImageEdit}
               className="image"
-              src={`http://localhost:3000/images/` + Getuser.Profile}
+              src={endpoint+'/images/' + Getuser.Profile}
               alt=""
             />
           </Link>

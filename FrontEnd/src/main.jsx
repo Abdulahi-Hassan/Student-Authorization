@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css"
 const container = document.querySelector("#root");
 
-export let endpoint='https://student-authorization.onrender.com/api'
+export let endpoint='https://student-authorization.onrender.com'
 
 // export let endpoint='http://localhost:3000/api'
 

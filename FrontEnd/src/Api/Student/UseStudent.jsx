@@ -10,7 +10,7 @@ const UseStudent = () => {
   const [GetStudent, setGetStudent] = useState([]);
   const createstudent = async (student) => {
     let { data: Insert } = await axios.post(
-      endpoint+"/student/signup",
+      endpoint+"/api/student/signup",
       student
     );
     if (Insert.status === "Success") {
@@ -24,7 +24,7 @@ const UseStudent = () => {
   };
   const updatestudent = async ({ student, id }) => {
     let { data: Update } = await axios.put(
-      `${endpoint+"/student"}/${id}`,
+      `${endpoint+"/api/student"}/${id}`,
       student
     );
     if (Update.status === "Success") {
@@ -39,7 +39,7 @@ const UseStudent = () => {
 
   const deletestudent = async ({ id }) => {
     let { data: Remove } = await axios.delete(
-      `${endpoint+"/student"}/${id}`
+      `${endpoint+"/api/student"}/${id}`
     );
     if (Remove.status === "Success") {
       setTimeout(() => {
@@ -51,9 +51,9 @@ const UseStudent = () => {
 
   useEffect(() => {
     const usestudentgetall = async () => {
-      let { data } = await axios.get(endpoint+'/student');
+      let { data } = await axios.get(endpoint+'/api/student');
       setGetAllstudent(data);
-      let { data:single } = await axios.get(endpoint+'/student/single');
+      let { data:single } = await axios.get(endpoint+'/api/student/single');
       setGetStudent(single);
     };
     usestudentgetall();

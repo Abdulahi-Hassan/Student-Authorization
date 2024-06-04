@@ -7,7 +7,7 @@ const UseLogin = () => {
   let navigate = useNavigate();
   let {Getuser}=UseUser()
   const uselogin = async ({ login }) => {
-    let { data } = await axios.post(endpoint + "/auth/login", login);
+    let { data } = await axios.post(endpoint + "/api/auth/login", login);
     if (data.status === "Success") {
       localStorage.setItem("token", data.token);
       localStorage.setItem("Role", JSON.stringify(data.Role));

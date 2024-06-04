@@ -10,7 +10,7 @@ const UsePayment = () => {
   let navigate = useNavigate();
   const InsertPayment = async (Payment) => {
     let { data: Insert } = await axios.post(
-      endpoint + "/payment/signup",
+      endpoint + "/api/payment/signup",
       Payment
     );
     if (Insert.status === "Success") {
@@ -24,7 +24,7 @@ const UsePayment = () => {
   };
   const UpdatePayment = async ({ Payment, id }) => {
     let { data: Update } = await axios.put(
-      `${endpoint + "/payment"}/${id}`,
+      `${endpoint + "/api/payment"}/${id}`,
       Payment
     );
     if (Update.status === "Success") {
@@ -37,7 +37,7 @@ const UsePayment = () => {
     }
   };
   const DeletePayment = async ({ id }) => {
-    let { data: Delete } = await axios.delete(`${endpoint + "/payment"}/${id}`);
+    let { data: Delete } = await axios.delete(`${endpoint + "/api/payment"}/${id}`);
     if (Delete.status === "Success") {
       toast.success(Delete.message);
       setTimeout(() => {
@@ -47,9 +47,9 @@ const UsePayment = () => {
   };
   useEffect(() => {
     const GetAllPayment = async () => {
-      let { data } = await axios.get(endpoint + "/payment");
+      let { data } = await axios.get(endpoint + "/api/payment");
       setGetAllPayment(data);
-      let { data :single} = await axios.get(endpoint + "/payment/single");
+      let { data :single} = await axios.get(endpoint + "/api/payment/single");
       setGetPayment(single);
     };
     GetAllPayment();

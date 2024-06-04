@@ -3,6 +3,7 @@ import { TiThMenu } from "react-icons/ti";
 import Table from "./Table";
 import { UpdateUserProfile } from "./Update.Profile";
 import UseUser from "../../Api/User/UseUser";
+import { endpoint } from "../../main";
 const UserDashboard = () => {
   const {Getuser}=UseUser();
   const Handle = () => {
@@ -32,7 +33,7 @@ const UserDashboard = () => {
             <img
               onClick={ImageEdit}
               className="image"
-              src={`http://localhost:3000/images/`+Getuser.Profile}
+              src={ endpoint +"/images/" + Getuser.Profile}
               alt=""
             />
           </Link>

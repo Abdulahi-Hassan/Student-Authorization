@@ -9,7 +9,7 @@ const UseClass = () => {
   const [GetAllclass, setGetAllclass] = useState([]);
   const [useclassget, setuseclassget] = useState([]);
   const createclass = async ({ Class }) => {
-    let { data: Insert } = await axios.post(endpoint + "/class/signup", Class);
+    let { data: Insert } = await axios.post(endpoint + "/api/class/signup", Class);
     if (Insert.status === "Success") {
       setTimeout(() => {
         navigate("/class");
@@ -21,7 +21,7 @@ const UseClass = () => {
   };
   const updateclass = async ({ Class, id }) => {
     let { data: Update } = await axios.put(
-      `${endpoint + "/class"}/${id}`,
+      `${endpoint + "/api/class"}/${id}`,
       Class
     );
     if (Update.status === "Success") {
@@ -35,7 +35,7 @@ const UseClass = () => {
   };
 
   const deleteclass = async ({ id }) => {
-    let { data: Remove } = await axios.delete(`${endpoint + "/class"}/${id}`);
+    let { data: Remove } = await axios.delete(`${endpoint + "/api/class"}/${id}`);
     if (Remove.status === "Success") {
       setTimeout(() => {
         navigate("/class");
@@ -46,9 +46,9 @@ const UseClass = () => {
 
   useEffect(() => {
     const useclassgetall = async () => {
-      let { data } = await axios.get(endpoint + "/class");
+      let { data } = await axios.get(endpoint + "/api/class");
       setGetAllclass(data);
-      let { data:single } = await axios.get(endpoint + "/class/single");
+      let { data:single } = await axios.get(endpoint + "/api/class/single");
       setuseclassget(single);
     };
     useclassgetall();

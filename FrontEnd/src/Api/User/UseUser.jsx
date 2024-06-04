@@ -11,7 +11,7 @@ const UseUser = () => {
   let token = localStorage.getItem("token");
   let UserExist = JSON.parse(localStorage.getItem("single"));
   const useusersignup = async ({ formdata }) => {
-    let { data } = await axios.post(endpoint + "/auth/signup", formdata);
+    let { data } = await axios.post(endpoint + "/api/auth/signup", formdata);
     if (data.status === "Success") {
       toast.success(data.message);
       if (token) {
@@ -29,7 +29,7 @@ const UseUser = () => {
   };
 
   const useuserupdate = async ({ formdata, id }) => {
-    let { data } = await axios.put(`${endpoint + "/user"}/${id}`, formdata);
+    let { data } = await axios.put(`${endpoint + "/api/user"}/${id}`, formdata);
     if (data.status === "Success") {
       if (id === UserExist._id) {
         setTimeout(() => {
@@ -47,7 +47,7 @@ const UseUser = () => {
     }
   };
   const useuserdelete = async ({ id }) => {
-    let { data } = await axios.delete(`${endpoint + "/user"}/${id}`);
+    let { data } = await axios.delete(`${endpoint + "/api/user"}/${id}`);
     if (data.status === "Success") {
       toast.success(data.message);
       setTimeout(() => {
@@ -58,10 +58,10 @@ const UseUser = () => {
 
   useEffect(() => {
     const useusergetall = async () => {
-      let { data } = await axios.get(endpoint + "/user", {
+      let { data } = await axios.get(endpoint + "/api/user", {
         withCredentials: true,
       });
-      let { data: Single } = await axios.get(endpoint + "/user/single", {
+      let { data: Single } = await axios.get(endpoint + "/api/user/single", {
         withCredentials: true,
       });
       setGetuser(Single);

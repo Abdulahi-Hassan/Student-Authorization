@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import UseUser from "../../Api/User/UseUser";
+import { endpoint } from "../../main";
 export const UpdateUserProfile = () => {
   let { id } = useParams();
   const liibaan = JSON.parse(localStorage.getItem("single"));
@@ -37,7 +38,7 @@ export const UpdateUserProfile = () => {
             src={`${
               user.Profile
                 ? URL.createObjectURL(user.Profile)
-                : "http://localhost:3000/images/" + Getuser.Profile
+                :  endpoint +"/images/" + Getuser.Profile
             }`}
             style={{
               width: "70px",

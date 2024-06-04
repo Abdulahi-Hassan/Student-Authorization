@@ -70,7 +70,7 @@ const App = () => {
         <Route path="/contuct" element={<Contuct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/*" element={<h1>Not Found</h1>} />
+        {/* <Route path="/*" element={<h1>Not Found</h1>} /> */}
         <Route path="/forgetpassword" element={<Forgetpassword />} />
       </Routes>
       <Toaster />
